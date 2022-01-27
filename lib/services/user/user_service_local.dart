@@ -8,6 +8,7 @@ import '../../models/user.dart';
 
 class UserServiceLocal extends UserService {
   List<User> _cachedDb;
+  String get _userId => user.uid;
 
   Future<List<User>> _readLocalToCache() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -37,8 +38,8 @@ class UserServiceLocal extends UserService {
   }
 
   @override
-  Future<User> getUser(id) async {
-    User _user = _cachedDb.firstWhere((n) => n.uid == id, orElse: null);
+  Future<User> getUser() async {
+    User _user = _cachedDb.firstWhere((n) => n.uid == _userId, orElse: null);
     if (_user == null) return null;
     return User.copy(_user);
   }
@@ -54,8 +55,8 @@ class UserServiceLocal extends UserService {
   }
 
   @override
-  Future<void> removeUser(id) async {
-    _cachedDb.removeWhere((_user) => user.uid == id);
+  Future<void> removeUser(uid) async {
+    _cachedDb.removeWhere((_user) => user.uid == _userId);
     _writeCacheToLocal();
   }
 

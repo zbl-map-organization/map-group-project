@@ -25,8 +25,7 @@ Route<dynamic> createRoute(settings) {
       return EditScreen.route(
           index: settings.arguments['index'], text: settings.arguments['text']);
     case '/userInputScreen':
-      return UserInputScreen.route(
-          index: settings.arguments['index'], text: settings.arguments['text']);
+      return UserInputScreen.route(text: settings.arguments['text']);
   }
   return null;
 }

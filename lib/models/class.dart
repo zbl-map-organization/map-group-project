@@ -3,6 +3,8 @@ class Class {
   String _classDate;
   String _classLink;
   String _classTime;
+  String _tutorID;
+  String _studentID;
   String _status;
 
   get id => _id;
@@ -17,14 +19,22 @@ class Class {
   get classTime => _classTime;
   set classTime(value) => _classTime = value;
 
+  get tutorID => _tutorID;
+  set tutorID(value) => _tutorID = value;
+
+  get studentID => _studentID;
+  set studentID(value) => _studentID = value;
+
   get status => _status;
   set status(value) => _status = value;
 
-  Class({id, classDate, classLink, classTime, status})
+  Class({id, classDate, classLink, classTime, tutorID, studentID, status})
       : _id = id,
         _classDate = classDate,
         _classLink = classLink,
         _classTime = classTime,
+        _tutorID = tutorID,
+        _studentID = studentID,
         _status = status;
 
   Class.copy(Class from)
@@ -33,6 +43,8 @@ class Class {
             classDate: from.classDate,
             classLink: from.classLink,
             classTime: from.classTime,
+            tutorID: from.tutorID,
+            studentID: from.studentID,
             status: from.status);
 
   Class.fromJson(Map<String, dynamic> json)
@@ -41,6 +53,8 @@ class Class {
             classDate: json['classDate'],
             classLink: json['classLink'],
             classTime: json['classTime'],
+            tutorID: json['tutorID'],
+            studentID: json['studentID'],
             status: json['status']);
 
   Map<String, dynamic> toJson() => {
@@ -48,6 +62,8 @@ class Class {
         'classDate': classDate,
         'classLink': classLink,
         'classTime': classTime,
+        'tutorID': tutorID,
+        'studentID': studentID,
         'status': status,
       };
 
@@ -56,6 +72,8 @@ class Class {
         classDate: classDate ?? this.classDate,
         classLink: classLink ?? this.classLink,
         classTime: classTime ?? this.classTime,
+        tutorID: tutorID ?? this.tutorID,
+        studentID: studentID ?? this.studentID,
         status: status ?? this.status,
       );
 }

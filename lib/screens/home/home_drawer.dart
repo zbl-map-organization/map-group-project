@@ -6,7 +6,6 @@ import '../../screens/topic/topic_screen.dart';
 import '../view.dart';
 
 class HomeDrawer extends StatelessWidget {
-
   void _openTopicScreen(context) async {
     final result = await Navigator.push(context, TopicScreen.route());
     if (result != null) {}
@@ -17,44 +16,45 @@ class HomeDrawer extends StatelessWidget {
     if (result != null) {}
   }
 
-  void _openUserScreen(BuildContext context, index, text) async {
-    final result = await Navigator.push(
-        context, UserInputScreen.route(index: index, text: text));
+  void _openUserScreen(BuildContext context, text) async {
+    final result =
+        await Navigator.push(context, UserInputScreen.route(text: text));
     if (result != null) {}
   }
 
   @override
   Widget build(BuildContext context) {
     return View<HomeViewmodel>(
-        builder: (_, vm, __) =>
-         Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Text('User Here'),
-            decoration: BoxDecoration(
-              color: Colors.indigo[800],
-            ),
-          ),
-          ListTile(
-            title: Text('Topics'),
-            onTap: () => _openTopicScreen(context),
-          ),
-          ListTile(
-            title: Text('Classes'),
-            onTap: () => _openClassScreen(context),
-          ),
-          ListTile(
-            title: Text('My Schedule'),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text('Profile'),
-            onTap: () => _openUserScreen(context, vm.user.uid, 'View'),
-          ),
-        ],
-      ),
-    ));
+        builder: (_, vm, __) => Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(
+                    child: Text('User Here'),
+                    decoration: BoxDecoration(
+                      color: Colors.indigo[800],
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Topics'),
+                    onTap: () => _openTopicScreen(context),
+                  ),
+                  ListTile(
+                    title: Text('Classes'),
+                    onTap: () => _openClassScreen(context),
+                  ),
+                  ListTile(
+                    title: Text('My Schedule'),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text('Profile'),
+                    onTap: () {
+                      _openUserScreen(context, 'View');
+                    },
+                  ),
+                ],
+              ),
+            ));
   }
 }

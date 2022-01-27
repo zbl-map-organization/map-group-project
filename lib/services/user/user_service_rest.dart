@@ -4,16 +4,17 @@
 //TODO Complete the implementation of each method of this service class.
 
 import 'package:setup_mvvm/models/user.dart';
+import 'package:setup_mvvm/services/user/user_repository.dart';
 
 import '../../app/service_locator.dart';
 import '../rest.dart';
 import 'user_service.dart';
-import '../../models/topic.dart';
 
 /// `NoteServiceRest` is a datbase service for notes that are accessed from a REST service.
 ///
 class UserServiceRest extends UserService {
   RestService get rest => locator();
+  String get _userId => user.uid;
 
   @override
   Future<List<User>> fetchUsers() async {
@@ -22,8 +23,8 @@ class UserServiceRest extends UserService {
   }
 
   @override
-  Future<User> getUser(id) async {
-    final json = await rest.get('users/$id');
+  Future<User> getUser() async {
+    final json = await rest.get('users/$_userId');
     return User.fromJson(json);
   }
 
@@ -34,8 +35,8 @@ class UserServiceRest extends UserService {
   }
 
   @override
-  Future<void> removeUser(id) async {
-    await rest.delete('users/$id');
+  Future<void> removeUser(uid) async {
+    await rest.delete('users/$_userId');
   }
 
   @override

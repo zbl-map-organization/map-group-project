@@ -1,21 +1,32 @@
 // Turn of null-safety by writing the following line
 // @dart=2.9
 import 'package:flutter/material.dart';
-
 import '../../app/service_locator.dart';
 import '../../models/topic.dart';
+import '../../models/user.dart';
 import '../../services/topic/topic_service.dart';
 import '../viewmodel.dart';
+import '../../services/user/user_service.dart';
+import '../../services/user/user_repository.dart';
 
 class TopicViewmodel extends Viewmodel {
   final _service = locator<TopicService>();
   List<Topic> _list;
-
+  List<Topic> get list => _list;
+  UserService get dataService => locator<UserService>();
+  final UserRepository _userRepository = locator();
+  User get user => _userRepository.user;
   Topic getTopic(int index) => _list == null ? null : _list[index];
   int get dataCount => _list == null ? 0 : _list.length;
+  List<User> _ulist;
+  User getUser(id) {
+    int i = _ulist.indexWhere((user) => user.uid == id);
+    return _ulist[i];
+  }
 
   init() => update(() async {
         _list = await _service.fetchTopics();
+        _ulist = await dataService.fetchUsers();
         super.init();
       });
 

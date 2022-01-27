@@ -1,6 +1,6 @@
 import 'package:setup_mvvm/models/user.dart';
 
-import '../../screens/user/user_viewmodel.dart';
+import 'user_viewmodel.dart';
 import 'package:flutter/material.dart';
 import '../view.dart';
 
@@ -11,6 +11,7 @@ class RegisterScreen extends StatelessWidget {
   String username;
   String name;
   String email;
+  String password;
   String phone;
   String userType;
 
@@ -69,12 +70,33 @@ class RegisterScreen extends StatelessWidget {
                                     color: Colors.black54,
                                     fontSize: 20,
                                     fontFamily: 'AvenirLight'),
-                                hintText: 'Type your Username here',
+                                hintText: 'Type your Email Address here',
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always,
                                 border: OutlineInputBorder(),
                               ),
                               onChanged: (value) => username = value,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 10),
+                            child: TextFormField(
+                              // keyboardType: TextInputType.number,
+
+                              decoration: InputDecoration(
+                                // icon: Icon(Icons.mail),
+                                labelStyle: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: 20,
+                                    fontFamily: 'AvenirLight'),
+                                labelText: 'Password',
+                                hintText: 'Type your password here',
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                border: OutlineInputBorder(),
+                              ),
+                              onChanged: (value) => password = value,
                             ),
                           ),
                           Padding(
@@ -97,24 +119,26 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 10),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                // icon: Icon(Icons.person),
-                                labelText: 'UserType',
-                                labelStyle: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 20,
-                                    fontFamily: 'AvenirLight'),
-                                hintText: 'Type your User Type here',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                                border: OutlineInputBorder(),
-                              ),
-                              onChanged: (value) => userType = value,
-                            ),
-                          ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 10),
+                              child: DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  border: OutlineInputBorder(),
+                                ),
+                                isExpanded: true,
+                                iconSize: 30.0,
+                                hint: Text('Select your User Type here'),
+                                items: ['S', 'V'].map(
+                                  (val) {
+                                    return DropdownMenuItem<String>(
+                                      value: val,
+                                      child: Text(val),
+                                    );
+                                  },
+                                ).toList(),
+                                onChanged: (value) => userType = value,
+                              )),
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 5, vertical: 10),
@@ -134,27 +158,6 @@ class RegisterScreen extends StatelessWidget {
                                 border: OutlineInputBorder(),
                               ),
                               onChanged: (value) => phone = value,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 10),
-                            child: TextFormField(
-                              // keyboardType: TextInputType.number,
-
-                              decoration: InputDecoration(
-                                // icon: Icon(Icons.mail),
-                                labelStyle: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 20,
-                                    fontFamily: 'AvenirLight'),
-                                labelText: 'Email Address',
-                                hintText: 'Type your email address here',
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                                border: OutlineInputBorder(),
-                              ),
-                              onChanged: (value) => email = value,
                             ),
                           ),
                           Row(
@@ -179,14 +182,15 @@ class RegisterScreen extends StatelessWidget {
                                                   color: Colors.red)))),
                                   onPressed: () async {
                                     String uid = await vm.authAddUser(
-                                        email: email, password: phone);
+                                        email: username, password: password);
                                     await vm.addUser(User(
                                         uid: uid,
                                         username: username,
                                         name: name,
                                         userType: userType,
                                         phone: phone,
-                                        email: email));
+                                        email: username,
+                                        password: password));
 
                                     Navigator.pop(context);
                                   }),

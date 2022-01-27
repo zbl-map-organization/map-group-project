@@ -1,4 +1,5 @@
 import '../../../models/topic.dart';
+import '../topic_screen.dart';
 import '../topic_viewmodel.dart';
 import '../../../screens/view.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,20 @@ class InputBody extends StatelessWidget {
     if (result != null) {}
   }
 
+  void _openTopicScreen(context) async {
+    final result = await Navigator.push(context, TopicScreen.route());
+    if (result != null) {}
+  }
+
   final int index;
   final bool editbool;
-  InputBody(this.index, this.editbool);
+  final bool addbool;
+  InputBody(this.index, this.editbool, this.addbool);
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Center(
-        child: SelectorView<TopicViewmodel, Topic>(
+    return SingleChildScrollView(
+        child: Center(
+            child: SelectorView<TopicViewmodel, Topic>(
       selector: (_, vm) => vm.getTopic(index),
       builder: (_, vm, topic, __) {
         return Column(children: [
@@ -193,16 +201,20 @@ class InputBody extends StatelessWidget {
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             EdgeInsets.all(10)),
                         foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
+                            MaterialStateProperty.all<Color>(Colors.indigo),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(110.0),
-                                    side: BorderSide(color: Colors.blue)))),
+                                    side: BorderSide(color: Colors.indigo)))),
                     onPressed: () => _openInputScreen(context, index, 'Edit'))
               ],
             ),
-            visible: !editbool,
+            visible: addbool
+                ? false
+                : (vm.getUser(vm.user.uid).userType == "V")
+                    ? !editbool
+                    : false,
           ),
           Visibility(
             child: Row(
@@ -226,7 +238,48 @@ class InputBody extends StatelessWidget {
                     }),
               ],
             ),
-            visible: editbool,
+            visible: addbool ? false : editbool,
+          ),
+          Visibility(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                    child: Text("Cancel".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.red)))),
+                    onPressed: () async {
+                      vm.deleteTopic(vm.getTopic(index).id);
+                      _openTopicScreen(context);
+                    }),
+                ElevatedButton(
+                    child: Text("Add Topic".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.indigo),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.indigo)))),
+                    onPressed: () {
+                      _openInputScreen(context, index, 'View');
+                    }),
+              ],
+            ),
+            visible: addbool,
           ),
         ]);
       },

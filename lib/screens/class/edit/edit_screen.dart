@@ -12,20 +12,22 @@ class EditScreen extends StatelessWidget {
   final String text;
   bool editbool = true;
   int index;
+  bool addbool = false;
 
   EditScreen(this.index, this.text) {
     if (text == 'View') {
       editbool = false;
+    } else if (text == 'Add') {
+      addbool = true;
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return View<ClassViewmodel>(builder: (_, vm, ___) {
       return Scaffold(
         appBar: EditAppBar(text),
         drawer: HomeDrawer(),
-        body: EditBody(index, editbool),
+        body: EditBody(index, editbool, addbool),
       );
     });
   }

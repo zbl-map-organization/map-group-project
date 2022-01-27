@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:setup_mvvm/models/user.dart';
 import 'package:setup_mvvm/screens/user/register_screen.dart';
-import 'package:setup_mvvm/screens/user/user_viewmodel.dart';
 
 import '../view.dart';
 import '../login/login_viewmodel.dart';

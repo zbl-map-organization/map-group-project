@@ -7,21 +7,21 @@ import 'package:flutter/material.dart';
 
 import 'user_viewmodel.dart';
 
-class InputBody extends StatelessWidget {
-  void _openInputScreen(context, index, text) async {
-    final result = await Navigator.push(
-        context, UserInputScreen.route(index: index, text: text));
+class UserInputBody extends StatelessWidget {
+  void _openInputScreen(context, text) async {
+    final result =
+        await Navigator.push(context, UserInputScreen.route(text: text));
     if (result != null) {}
   }
 
-  final dynamic index;
   final bool editbool;
-  InputBody(this.index, this.editbool);
+  UserInputBody(this.editbool);
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: SelectorView<UserViewmodel, User>(
-      selector: (_, vm) => vm.getUser(),
+    return SingleChildScrollView(
+        child: Center(
+            child: SelectorView<UserViewmodel, User>(
+      selector: (_, vm) => vm.user,
       builder: (_, vm, user, __) {
         return Column(children: [
           Container(
@@ -45,7 +45,7 @@ class InputBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
-              initialValue: vm.getUser().username,
+              initialValue: vm.getUser(user.uid).username,
               enabled: editbool,
               decoration: InputDecoration(
                 // icon: Icon(Icons.person),
@@ -58,121 +58,137 @@ class InputBody extends StatelessWidget {
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
-              onChanged: (value) => vm.updateUser(
-                User(
-                    username: value,
-                    name: user.name,
-                    userType: user.userType,
-                    phone: user.phone,
-                    email: user.email),
-              ),
+              onChanged: (value) {
+               user.username = value;
+                vm.updateUser(
+                  id: user.uid,
+                  data: User(
+                      username: value,
+                      name: vm.getUser(user.uid).name,
+                      userType: vm.getUser(user.uid).userType,
+                      phone: vm.getUser(user.uid).phone,
+                      email: vm.getUser(user.uid).email),
+                );
+              },
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
-              initialValue: vm.getUser().name,
-              enabled: editbool,
-              decoration: InputDecoration(
-                // icon: Icon(Icons.person),
-                labelText: 'Name',
-                labelStyle: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20,
-                    fontFamily: 'AvenirLight'),
-                hintText: 'Type your name here',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) => vm.updateUser(
-                User(
-                    username: user.username,
-                    name: value,
-                    userType: user.userType,
-                    phone: user.phone,
-                    email: user.email),
-              ),
-            ),
+                initialValue: vm.getUser(user.uid).name,
+                enabled: editbool,
+                decoration: InputDecoration(
+                  // icon: Icon(Icons.person),
+                  labelText: 'Name',
+                  labelStyle: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      fontFamily: 'AvenirLight'),
+                  hintText: 'Type your name here',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  user.name = value;
+                  vm.updateUser(
+                    id: user.uid,
+                    data: User(
+                        username: vm.getUser(user.uid).username,
+                        name: value,
+                        userType: vm.getUser(user.uid).userType,
+                        phone: vm.getUser(user.uid).phone,
+                        email: vm.getUser(user.uid).email),
+                  );
+                }),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
-              initialValue: vm.getUser().userType,
-              enabled: editbool,
-              decoration: InputDecoration(
-                // icon: Icon(Icons.person),
-                labelText: 'UserType',
-                labelStyle: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20,
-                    fontFamily: 'AvenirLight'),
-                hintText: 'Type your User Type here',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) => vm.updateUser(
-                User(
-                    username: user.username,
-                    name: user.name,
-                    userType: value,
-                    phone: user.phone,
-                    email: user.email),
-              ),
-            ),
+                initialValue: vm.getUser(user.uid).userType,
+                enabled: editbool,
+                decoration: InputDecoration(
+                  // icon: Icon(Icons.person),
+                  labelText: 'UserType',
+                  labelStyle: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      fontFamily: 'AvenirLight'),
+                  hintText: 'Type your User Type here',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  user.userType = value;
+                  vm.updateUser(
+                    id: user.uid,
+                    data: User(
+                        username: vm.getUser(user.uid).username,
+                        name: vm.getUser(user.uid).name,
+                        userType: value,
+                        phone: vm.getUser(user.uid).phone,
+                        email: vm.getUser(user.uid).email),
+                  );
+                }),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
-              // keyboardType: TextInputType.number,
-              initialValue: vm.getUser().phone,
-              enabled: editbool,
-              decoration: InputDecoration(
-                // icon: Icon(Icons.phone),
-                labelText: 'Telephone No.',
-                labelStyle: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20,
-                    fontFamily: 'AvenirLight'),
-                hintText: 'Type your phone number here',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) => vm.updateUser(
-                User(
-                    username: user.username,
-                    name: user.name,
-                    userType: user.userType,
-                    phone: value,
-                    email: user.email),
-              ),
-            ),
+                // keyboardType: TextInputType.number,
+                initialValue: vm.getUser(user.uid).phone,
+                enabled: editbool,
+                decoration: InputDecoration(
+                  // icon: Icon(Icons.phone),
+                  labelText: 'Telephone No.',
+                  labelStyle: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      fontFamily: 'AvenirLight'),
+                  hintText: 'Type your phone number here',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  user.phone = value;
+                  vm.updateUser(
+                    id: user.uid,
+                    data: User(
+                        username: vm.getUser(user.uid).username,
+                        name: vm.getUser(user.uid).name,
+                        userType: vm.getUser(user.uid).userType,
+                        phone: value,
+                        email: vm.getUser(user.uid).email),
+                  );
+                }),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
-              // keyboardType: TextInputType.number,
-              initialValue: vm.getUser().email,
-              enabled: editbool,
-              decoration: InputDecoration(
-                // icon: Icon(Icons.mail),
-                labelStyle: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20,
-                    fontFamily: 'AvenirLight'),
-                labelText: 'Email Address',
-                hintText: 'Type your email address here',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) => vm.updateUser(
-                User(
-                    username: user.username,
-                    name: user.name,
-                    userType: user.userType,
-                    phone: user.phone,
-                    email: value),
-              ),
-            ),
+                // keyboardType: TextInputType.number,
+                initialValue: vm.getUser(user.uid).email,
+                enabled: editbool,
+                decoration: InputDecoration(
+                  // icon: Icon(Icons.mail),
+                  labelStyle: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      fontFamily: 'AvenirLight'),
+                  labelText: 'Email Address',
+                  hintText: 'Type your email address here',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  user.email = value;
+                  vm.updateUser(
+                    id: user.uid,
+                    data: User(
+                        username: vm.getUser(user.uid).username,
+                        name: vm.getUser(user.uid).name,
+                        userType: vm.getUser(user.uid).userType,
+                        phone: vm.getUser(user.uid).phone,
+                        email: value),
+                  );
+                }),
           ),
           Visibility(
             child: Row(
@@ -190,7 +206,7 @@ class InputBody extends StatelessWidget {
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(110.0),
                               side: BorderSide(color: Colors.blue)))),
-                  onPressed: () => _openInputScreen(context, index, 'Edit'),
+                  onPressed: () => _openInputScreen(context, 'Edit'),
                 )
               ],
             ),
@@ -213,13 +229,13 @@ class InputBody extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(110.0),
                                     side: BorderSide(color: Colors.red)))),
-                    onPressed: () => _openInputScreen(context, index, 'View')),
+                    onPressed: () => _openInputScreen(context, 'View')),
               ],
             ),
             visible: editbool,
           ),
         ]);
       },
-    ));
+    )));
   }
 }

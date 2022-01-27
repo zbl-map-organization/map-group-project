@@ -9,15 +9,22 @@ import '../viewmodel.dart';
 import '../../services/user/user_repository.dart';
 
 class UserViewmodel extends Viewmodel {
-  UserViewmodel();
+  List<User> _list;
+
   StreamSubscription _streamObserver;
   bool get isObservingStream => _streamObserver != null;
   UserService get dataService => locator<UserService>();
   final UserRepository _userRepository = locator();
-  User getUser() => _userRepository.user;
+  User get user => _userRepository.user;
+
+  User getUser(id) {
+    int i = _list.indexWhere((user) => user.uid == id);
+    return _list[i];
+  }
 
   @override
   init() => update(() async {
+        _list = await dataService.fetchUsers();
         super.init();
       });
 
@@ -29,19 +36,24 @@ class UserViewmodel extends Viewmodel {
   Future<void> addUser(User user) async {
     turnBusy();
     await dataService.addUser(user);
+    _list.add(user);
+    print('${user.email}${user.name}${user.phone}');
     turnIdle();
   }
 
-  Future<void> removeUser(dynamic id) async {
+  Future<void> removeUser(uid) async {
     turnBusy();
-    await dataService.removeUser(id);
+    await dataService.removeUser(uid);
+    _list.removeWhere((user) => user.uid == uid);
     turnIdle();
   }
 
-  Future<void> updateUser(User user) async {
+  Future<void> updateUser({dynamic id, User data}) async {
     turnBusy();
-    final updateUser = await dataService.updateUser(data: user);
-    user = updateUser;
+    final updateUser = await dataService.updateUser(data: data);
+    final index = _list.indexWhere((user) => user.uid == id);
+    if (index == -1) return;
+    _list[index] = updateUser;
     turnIdle();
   }
 

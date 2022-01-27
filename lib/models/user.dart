@@ -4,24 +4,38 @@
 //? Date: 8 Jan 2022
 
 class User {
-  final String username;
-  final String password;
-  final dynamic uid;
-  final String token;
-  final String name;
-  final String email;
-  final String phone;
-  final String userType;
+  String _username;
+  String _password;
+  final dynamic _uid;
+  final String _token;
+  String _name;
+  String _email;
+  String _phone;
+  String _userType;
+  get username => _username;
+  set username(value) => _username = value;
+  get password => _password;
+  set password(value) => _password = value;
+  get uid => _uid;
+  get token => _token;
+  get name => _name;
+  set name(value) => _name = value;
+  get email => _email;
+  set email(value) => _email = value;
+  get phone => _phone;
+  set phone(value) => _phone = value;
+  get userType => _userType;
+  set userType(value) => _userType = value;
 
-  const User(
-      {this.username = '',
-      this.password = '',
-      this.uid = '',
-      this.token = '',
-      this.name = '',
-      this.email = '',
-      this.phone,
-      this.userType});
+  User({username, password, uid, token, name, email, phone, userType})
+      : _username = username,
+        _password = password,
+        _uid = uid,
+        _token = token,
+        _name = name,
+        _email = email,
+        _phone = phone,
+        _userType = userType;
   User.copy(User from)
       : this(
             username: from.username,
@@ -55,7 +69,8 @@ class User {
         'userType': userType
       };
 
-  copyWith({username, password, uid, token, name, email, phone, userType}) =>
+  User copyWith(
+          {username, password, uid, token, name, email, phone, userType}) =>
       User(
           username: username ?? this.username,
           password: password ?? this.password,

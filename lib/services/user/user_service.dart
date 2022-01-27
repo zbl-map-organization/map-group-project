@@ -20,9 +20,10 @@ abstract class UserService {
   final UserRepository _userRepository = locator();
   User get user => _userRepository.user;
 
-  Future<User> getUser(id);
+  Future<List<User>> fetchUsers();
+  Future<User> getUser();
   Future<User> updateUser({User data});
-  Future<void> removeUser(id);
+  Future<void> removeUser(uid);
   Future<User> addUser(User data);
 
   // this getter is to be overidden, if the service supports stream such as firestore

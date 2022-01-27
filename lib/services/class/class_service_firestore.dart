@@ -11,16 +11,15 @@ import '../../models/class.dart';
 
 class ClassServiceFirestore extends ClassService {
   // static const String _userId = 'hm2leHyBDdYoMxF8hyqceJrs9rF2';
-  String get _userId => user.uid;
   final _idGenerator = Uuid();
   final _firestore = Firestore();
 
   CollectionReference get _collection => _firestore
-      .collection('classes/$_userId/items'); // use path style to reference
-  // _firestore.collection('classs').doc(_userId).collection('classs'); // alternative reference
+      .collection('class/GeneralClass/items'); // use path style to reference
+  // _firestore.collection('topics').doc('GeneralTopic').collection('items'); // alternative reference
 
   DocumentReference _getClassDocument(classId) => _firestore.document(
-      'classes/$_userId/items/$classId'); // use path style to reference
+      'class/GeneralClass/items/$classId'); // use path style to reference
 
   @override
   Stream get stream => _collection.snapshots();
