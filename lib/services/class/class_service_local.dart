@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'class_service.dart';
 import '../../models/class.dart';
 

@@ -1,5 +1,3 @@
-//! Define the model class here
-
 class Topic {
   dynamic _id;
   String _title;

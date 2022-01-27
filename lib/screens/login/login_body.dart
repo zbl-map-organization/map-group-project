@@ -1,5 +1,3 @@
-// import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:setup_mvvm/screens/login/login_text_fields.dart';
 import '../view.dart';
@@ -14,19 +12,29 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Stack( // <-- STACK AS THE SCAFFOLD PARENT
+      children: [
+       
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/login.png"), // <-- BACKGROUND IMAGE
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+       
+          Scaffold(
+            backgroundColor: Colors.transparent, // <-- SCAFFOLD WITH TRANSPARENT BG
+                  
     body: View<LoginViewmodel>(
       builder: (context, viewmodel, _) => Column(
       
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
-        
+         
         children: [
-          SizedBox(
-            height: 200,
-          child:
-          Image.asset('assets/Votion_login.gif')),
-          const SizedBox(height: 10),
+          SizedBox(height: 100,),
           ...buildLoginTextFields(_state),
           if (viewmodel.errorMessage != null)
             Text(
@@ -37,6 +45,13 @@ class LoginBody extends StatelessWidget {
           LoginButtons(viewmodel: viewmodel, state: _state),
         ],
       ),
-    ));
+    ))]);
   }
 }
+
+/*SizedBox(
+            height: 200,
+          child:
+          Image.asset('assets/Votion_login.gif')),
+          const SizedBox(height: 10),
+          */

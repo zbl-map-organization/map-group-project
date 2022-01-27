@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import '../../app/service_locator.dart';
 import '../../services/user/user_service.dart';
 import 'package:flutter/widgets.dart';
-
 import '../../models/user.dart';
 import '../viewmodel.dart';
 import '../../services/user/user_repository.dart';

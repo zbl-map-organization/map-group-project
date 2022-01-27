@@ -1,7 +1,6 @@
 import 'topic_viewmodel.dart';
 import '../../screens/view.dart';
 import 'package:flutter/material.dart';
-
 import 'topic_tile.dart';
 
 class TopicBody extends StatelessWidget {

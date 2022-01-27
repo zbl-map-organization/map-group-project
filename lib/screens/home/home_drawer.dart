@@ -51,7 +51,7 @@ class HomeDrawer extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.indigo,
                     ),
-                    currentAccountPicture: Image.asset("assets/avatar.png"),
+                    currentAccountPicture: Image.asset("assets/avatar1.png",),
                     accountEmail: Text(''),
                     accountName: Text(
                       '',

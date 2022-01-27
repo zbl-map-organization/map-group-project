@@ -2,7 +2,6 @@ import 'input/input_screen.dart';
 import 'topic_viewmodel.dart';
 import '../../models/topic.dart';
 import 'package:flutter/material.dart';
-
 import '../view.dart';
 
 class TopicTile extends StatelessWidget {

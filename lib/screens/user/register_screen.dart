@@ -4,6 +4,7 @@ import 'user_viewmodel.dart';
 import 'package:flutter/material.dart';
 import '../view.dart';
 
+// ignore: must_be_immutable
 class RegisterScreen extends StatelessWidget {
   static Route route() =>
       MaterialPageRoute(builder: (context) => RegisterScreen());

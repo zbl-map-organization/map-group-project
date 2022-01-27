@@ -3,7 +3,6 @@ import '../tutor_schedule_screen.dart';
 import '../../class_viewmodel.dart';
 import '../../../view.dart';
 import 'package:flutter/material.dart';
-
 import 'tutor_schedule_edit_screen.dart';
 
 class EditBody extends StatelessWidget {

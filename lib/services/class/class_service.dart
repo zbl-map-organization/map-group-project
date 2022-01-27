@@ -4,11 +4,9 @@ import 'dart:async';
 import '../../app/service_locator.dart';
 import '../user/user_repository.dart';
 import '../../models/user.dart';
-
 import '../../models/class.dart';
 
 //? The abstract class for the service is fully given. Do nothing here.
-
 /// This abstract class is meant to facilitate the concept of Dependency Inversion.
 /// That means, you can simply switch between services (i.e., from REST to Mock and vice-versa)
 /// without changing most parts of your code.

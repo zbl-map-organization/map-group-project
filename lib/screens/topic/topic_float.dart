@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../models/topic.dart';
 import '../../screens/topic/topic_viewmodel.dart';
 import '../view.dart';
 import 'input/input_screen.dart';

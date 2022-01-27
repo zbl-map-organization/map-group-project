@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'login_app_bar.dart';
 import 'login_body.dart';
 import 'login_viewmodel.dart';
@@ -39,6 +38,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.indigo[800],
       appBar: LoginAppBar(),
       body: LoginBody(this),
     );

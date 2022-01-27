@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'login_screen.dart';
 import 'widgets/login_text_field.dart';
 
@@ -11,6 +10,7 @@ List<Widget> buildLoginTextFields(LoginScreenState state) => [
           controller: state.usernameController,
           hint: 'Username',
           icon: Icons.people),
+          SizedBox(height: 10,),
       LoginTextField(
         controller: state.passwordController,
         hint: 'Password',

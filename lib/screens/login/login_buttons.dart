@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'login_screen.dart';
 import 'login_viewmodel.dart';
 
@@ -17,16 +16,18 @@ class LoginButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              minimumSize: Size(90, 50),
+              primary: Color.fromARGB(255, 15, 22, 63)),
           child: Text('Sign in'),
           onPressed: () => state.onLogin(viewmodel),
         ),
         const SizedBox(width: 10.0),
-        ElevatedButton(
-          child: Text('Cancel'),
-          onPressed: state.onCancel,
-        ),
         const SizedBox(width: 10.0),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              minimumSize: Size(90, 50),
+              primary: Color.fromARGB(255, 54, 57, 75)),
           child: Text('Clear'),
           onPressed: () => state.onClear(viewmodel),
         ),

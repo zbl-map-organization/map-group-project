@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:setup_mvvm/screens/home/home_viewmodel.dart';
-
 import 'home_app_bar.dart';
 import 'home_body.dart';
 import 'home_drawer.dart';
-import 'home_float.dart';
 
 class HomeScreenSignedIn extends StatelessWidget {
   
@@ -14,7 +11,6 @@ class HomeScreenSignedIn extends StatelessWidget {
       appBar: HomeAppBar(),
       drawer: HomeDrawer(),
       body: HomeBody(),
-      floatingActionButton: HomeFloat(),
     );
   }
 }

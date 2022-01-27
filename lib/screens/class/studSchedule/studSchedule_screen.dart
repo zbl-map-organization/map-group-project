@@ -1,9 +1,7 @@
 import 'package:setup_mvvm/screens/class/studSchedule/studSchedule_app_bar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:setup_mvvm/screens/class/studSchedule/studSchedule_body.dart';
 import 'package:setup_mvvm/screens/home/home_drawer.dart';
-
 import '../../view.dart';
 import '../class_viewmodel.dart';
 

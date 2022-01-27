@@ -1,5 +1,3 @@
-import 'package:setup_mvvm/screens/class/tutorSchedule/edit/tutor_schedule_edit_screen.dart';
-
 import '../../../../models/class.dart';
 import '../tutor_schedule_screen.dart';
 import '../../class_viewmodel.dart';

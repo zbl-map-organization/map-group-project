@@ -6,21 +6,6 @@ class TutorScheduleAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       title: Text('Schedule List'),
-      actions: [
-        CircleAvatar(
-          backgroundColor: Colors.blue.shade200,
-          child: IconButton(
-            icon: Icon(
-              Icons.person,
-              color: Colors.blue,
-            ),
-            onPressed: () => {},
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-      ],
     );
   }
 

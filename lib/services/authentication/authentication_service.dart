@@ -2,7 +2,6 @@
 
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-
 import '../../models/user.dart';
 
 abstract class AuthenticationService {

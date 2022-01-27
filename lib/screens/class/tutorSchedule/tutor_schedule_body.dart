@@ -1,7 +1,6 @@
 import '../class_viewmodel.dart';
 import '../../../screens/view.dart';
 import 'package:flutter/material.dart';
-
 import 'tutor_schedule_tile.dart';
 
 class TutorScheduleBody extends StatelessWidget {

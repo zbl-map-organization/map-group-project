@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:setup_mvvm/models/class.dart';
-
 import '../../view.dart';
 import '../class_viewmodel.dart';
 import 'edit/student_schedule_edit_screen.dart';

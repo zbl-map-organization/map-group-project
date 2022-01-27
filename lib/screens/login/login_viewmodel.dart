@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-
 import '../../models/user.dart';
 import '../../app/service_locator.dart';
 import '../viewmodel.dart';

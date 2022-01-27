@@ -3,12 +3,8 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
-import 'package:setup_mvvm/app/service_locator.dart';
-
 import '../../models/user.dart'
     as AppUser; // To resolve conflict with firebase 'User' class
-
 import '../firebase.dart';
 import 'authentication_service.dart';
 

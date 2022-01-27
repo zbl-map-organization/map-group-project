@@ -1,10 +1,7 @@
 import '../../screens/user/user_input_screen.dart';
-
 import '../../models/user.dart';
-
 import '../view.dart';
 import 'package:flutter/material.dart';
-
 import 'user_viewmodel.dart';
 
 class UserInputBody extends StatelessWidget {

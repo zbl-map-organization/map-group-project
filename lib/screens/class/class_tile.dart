@@ -1,7 +1,6 @@
 import 'class_viewmodel.dart';
 import '../../models/class.dart';
 import 'package:flutter/material.dart';
-
 import '../view.dart';
 import 'edit/edit_screen.dart';
 

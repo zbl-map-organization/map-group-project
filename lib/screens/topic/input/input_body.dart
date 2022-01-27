@@ -3,7 +3,6 @@ import '../topic_screen.dart';
 import '../topic_viewmodel.dart';
 import '../../../screens/view.dart';
 import 'package:flutter/material.dart';
-
 import 'input_screen.dart';
 
 class InputBody extends StatelessWidget {

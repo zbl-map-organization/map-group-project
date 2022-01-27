@@ -2,7 +2,6 @@ import '../../../../models/class.dart';
 import '../../class_viewmodel.dart';
 import '../../../view.dart';
 import 'package:flutter/material.dart';
-
 import '../studSchedule_screen.dart';
 
 class StudentScheduleEditBody extends StatelessWidget {

@@ -1,9 +1,6 @@
 // Turn of null-safety by writing the following line
 // @dart=2.9
 
-// Author: jumail@utm.my.
-// Date: Dec 2021
-
 import 'package:flutter/foundation.dart';
 
 abstract class Viewmodel extends ChangeNotifier {

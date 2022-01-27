@@ -4,8 +4,6 @@ import '../class_viewmodel.dart';
 import '../../../screens/view.dart';
 import 'package:flutter/material.dart';
 
-import 'edit_screen.dart';
-
 class EditBody extends StatelessWidget {
   void _openClassScreen(context) async {
     final result = await Navigator.push(context, ClassScreen.route());

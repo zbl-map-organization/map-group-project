@@ -13,7 +13,7 @@ void main() async {
     title: 'Flutter List App Demo',
     theme: ThemeData(
       primarySwatch: Colors.indigo,
-      primaryColor: Colors.indigo[800],
+      primaryColor: Color.fromARGB(255, 5, 28, 48),
     ),
     // home: LoginScreen(),
     home: HomeScreen(),

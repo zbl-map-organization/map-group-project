@@ -5,6 +5,7 @@ import '../view.dart';
 import 'user_input_app_bar.dart';
 import 'user_input_body.dart';
 
+// ignore: must_be_immutable
 class UserInputScreen extends StatelessWidget {
   static Route route({text}) =>
       MaterialPageRoute(builder: (context) => UserInputScreen(text));

@@ -1,6 +1,5 @@
 import '../../view.dart';
 import 'package:flutter/material.dart';
-
 import '../class_viewmodel.dart';
 import 'studSchedule_tile.dart';
 

@@ -1,8 +1,4 @@
 // @dart=2.9
-
-//? Author: jumail@utm.my
-//? Date: 8 Jan 2022
-
 class User {
   String _username;
   String _password;

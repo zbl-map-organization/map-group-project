@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:setup_mvvm/models/class.dart';
 import '../../screens/class/class_viewmodel.dart';
 import '../view.dart';
 import 'edit/edit_screen.dart';

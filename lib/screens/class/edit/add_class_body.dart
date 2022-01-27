@@ -4,15 +4,9 @@ import '../class_viewmodel.dart';
 import '../../view.dart';
 import 'package:flutter/material.dart';
 
-import 'edit_screen.dart';
-
+// ignore: must_be_immutable
 class AddClassBody extends StatelessWidget {
-  void _openEditScreen(context, index, text) async {
-    final result = await Navigator.push(
-        context, EditScreen.route(index: index, text: text));
-    if (result != null) {}
-  }
-
+ 
   void _openClassScreen(context) async {
     final result = await Navigator.push(context, ClassScreen.route());
     if (result != null) {}
