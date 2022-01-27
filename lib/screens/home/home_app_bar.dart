@@ -12,7 +12,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           // progressBuilder: (_, __, ___) => LinearProgressIndicator(),
           selector: (_, vm) => vm.dataCount,
           builder: (_, vm, __, ___) =>
-              Text('List App - ${vm.dataCount} items available')),
+              Text('Home')),
     );
   }
 

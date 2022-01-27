@@ -35,11 +35,10 @@ void initializeServiceLocator() {
   // locator.registerLazySingleton<NumberService>(() => NumberServiceRest());
   locator.registerLazySingleton<AuthenticationService>(
       () => AuthenticationServiceFirebase());
-
-  // Repositories
+ // Repositories
   locator.registerLazySingleton<UserRepository>(() => UserRepository());
 
   // Viewmodels
   locator.registerLazySingleton<HomeViewmodel>(() => HomeViewmodel());
   locator.registerLazySingleton<LoginViewmodel>(() => LoginViewmodel());
-}
+ }

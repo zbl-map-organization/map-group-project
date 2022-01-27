@@ -12,7 +12,8 @@ void main() async {
   runApp(MaterialApp(
     title: 'Flutter List App Demo',
     theme: ThemeData(
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.indigo,
+      primaryColor: Colors.indigo[800],
     ),
     // home: LoginScreen(),
     home: HomeScreen(),

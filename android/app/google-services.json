@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608263267065",
+    "project_id": "votion-35a8e",
+    "storage_bucket": "votion-35a8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608263267065:android:5f9de69e1cb6219db7b828",
+        "android_client_info": {
+          "package_name": "Votion_VolunteerTutor.V1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608263267065-oh3apsdsdkm5qchpfeigo02hhkafchm3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxRIXPmkGD0ocuo7pldW00AZmbqRvrHx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608263267065-oh3apsdsdkm5qchpfeigo02hhkafchm3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
