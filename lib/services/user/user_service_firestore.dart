@@ -20,7 +20,6 @@ class UserServiceFirestore extends UserService {
       _firestore.document('users/$_userId'); // use path style to reference
 
   @override
-  Stream get stream => _collection.snapshots();
 
   @override
   Future<List<User>> fetchUsers() async {
