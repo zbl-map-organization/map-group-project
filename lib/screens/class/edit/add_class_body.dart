@@ -1,0 +1,180 @@
+import '../../../models/class.dart';
+import '../class_screen.dart';
+import '../class_viewmodel.dart';
+import '../../view.dart';
+import 'package:flutter/material.dart';
+
+import 'edit_screen.dart';
+
+class AddClassBody extends StatelessWidget {
+  void _openEditScreen(context, index, text) async {
+    final result = await Navigator.push(
+        context, EditScreen.route(index: index, text: text));
+    if (result != null) {}
+  }
+
+  void _openClassScreen(context) async {
+    final result = await Navigator.push(context, ClassScreen.route());
+    if (result != null) {}
+  }
+
+  String classTitle;
+  String classDate;
+  String classTime;
+  String classLink;
+  String status;
+  AddClassBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(child: Center(child: View<ClassViewmodel>(
+      builder: (_, vm, ___) {
+        return Column(
+          children: [
+            Image.asset('assets/topicinput.jpg'),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Class Title',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the Class Title here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    classTitle = value;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Class Date',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the Class Date here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    classDate = value;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  maxLines: 3,
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Class Time',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the class time here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    classTime = value;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  maxLines: 2,
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Class Link',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the class link here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    classLink = value;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  maxLines: 1,
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Status',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the class status here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    status = value;
+                  }),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                    child: Text("Cancel".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.red)))),
+                    onPressed: () async {
+                      _openClassScreen(context);
+                    }),
+                ElevatedButton(
+                    child: Text("Add Topic".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.indigo),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.indigo)))),
+                    onPressed: () {
+                      vm.addClass(Class(
+                          classTitle: classTitle,
+                          classDate: classDate,
+                          classLink: classLink,
+                          classTime: classTime,
+                          tutorID: vm.user.uid,
+                          status: status));
+                      _openClassScreen(context);
+                    }),
+              ],
+            ),
+          ],
+        );
+      },
+    )));
+  }
+}

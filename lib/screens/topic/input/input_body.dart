@@ -22,6 +22,7 @@ class InputBody extends StatelessWidget {
   final bool editbool;
   final bool addbool;
   InputBody(this.index, this.editbool, this.addbool);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -30,21 +31,9 @@ class InputBody extends StatelessWidget {
       selector: (_, vm) => vm.getTopic(index),
       builder: (_, vm, topic, __) {
         return Column(children: [
-          Container(
-            padding: EdgeInsets.all(25.0),
-            color: Colors.transparent,
-            child: new Container(
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Colors.blue[400],
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              child: new Icon(
-                Icons.menu_book,
-                size: 50,
-                color: Colors.white,
-              ),
-            ),
+          Image.asset('assets/topicinput.jpg'),
+          SizedBox(
+            height: 30,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -195,6 +184,24 @@ class InputBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
+                    child: Text("Delete".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(10)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.red)))),
+                    onPressed: () {
+                      vm.deleteTopic(vm.getTopic(index).id);
+                      _openTopicScreen(context);
+                    }),
+                    SizedBox(width:50.0),
+                TextButton(
                     child: Text("Edit".toUpperCase(),
                         style: TextStyle(fontSize: 12)),
                     style: ButtonStyle(
@@ -239,47 +246,6 @@ class InputBody extends StatelessWidget {
               ],
             ),
             visible: addbool ? false : editbool,
-          ),
-          Visibility(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                    child: Text("Cancel".toUpperCase(),
-                        style: TextStyle(fontSize: 12)),
-                    style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.red),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(110.0),
-                                    side: BorderSide(color: Colors.red)))),
-                    onPressed: () async {
-                      vm.deleteTopic(vm.getTopic(index).id);
-                      _openTopicScreen(context);
-                    }),
-                ElevatedButton(
-                    child: Text("Add Topic".toUpperCase(),
-                        style: TextStyle(fontSize: 12)),
-                    style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.indigo),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(110.0),
-                                    side: BorderSide(color: Colors.indigo)))),
-                    onPressed: () {
-                      _openInputScreen(context, index, 'View');
-                    }),
-              ],
-            ),
-            visible: addbool,
           ),
         ]);
       },

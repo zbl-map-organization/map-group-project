@@ -15,7 +15,10 @@ class UserViewmodel extends Viewmodel {
   bool get isObservingStream => _streamObserver != null;
   UserService get dataService => locator<UserService>();
   final UserRepository _userRepository = locator();
-  User get user => _userRepository.user;
+  User get user {
+    print(_userRepository.user.phone);
+    return _userRepository.user;
+  }
 
   User getUser(id) {
     int i = _list.indexWhere((user) => user.uid == id);

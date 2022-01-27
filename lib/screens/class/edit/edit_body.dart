@@ -21,7 +21,8 @@ class EditBody extends StatelessWidget {
   final int index;
   final bool editbool;
   final bool addbool;
-  EditBody(this.index, this.editbool, this.addbool);
+  final bool joinbool;
+  EditBody(this.index, this.editbool, this.addbool,this.joinbool);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -31,21 +32,40 @@ class EditBody extends StatelessWidget {
       builder: (_, vm, _class, __) {
         return Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(25.0),
-              color: Colors.transparent,
-              child: new Container(
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: Colors.blue[400],
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                child: new Icon(
-                  Icons.event_note_sharp,
-                  size: 50,
-                  color: Colors.white,
-                ),
-              ),
+            Image.asset('assets/topicinput.jpg'),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  initialValue: vm.getClass(index).classTitle,
+                  enabled: editbool,
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Class Title',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the Class Title here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    _class.classTitle = value;
+                    vm.updateClass(
+                        id: vm.getClass(index).id,
+                        data: Class(
+                          classTitle: value,
+                          classDate: _class.classDate,
+                          classTime: _class.classTime,
+                          classLink: _class.classLink,
+                          tutorID: _class.tutorID,
+                          studentID: _class.studentID,
+                          status: _class.status,
+                        ));
+                  }),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -68,6 +88,7 @@ class EditBody extends StatelessWidget {
                     vm.updateClass(
                         id: vm.getClass(index).id,
                         data: Class(
+                          classTitle: _class.classTitle,
                           classDate: value,
                           classTime: _class.classTime,
                           classLink: _class.classLink,
@@ -99,6 +120,7 @@ class EditBody extends StatelessWidget {
                     vm.updateClass(
                         id: vm.getClass(index).id,
                         data: Class(
+                          classTitle: _class.classTitle,
                           classDate: _class.classDate,
                           classTime: value,
                           classLink: _class.classLink,
@@ -130,6 +152,7 @@ class EditBody extends StatelessWidget {
                     vm.updateClass(
                         id: vm.getClass(index).id,
                         data: Class(
+                          classTitle: _class.classTitle,
                           classDate: _class.classDate,
                           classTime: _class.classTime,
                           classLink: value,
@@ -142,7 +165,7 @@ class EditBody extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(
-                  maxLines: 2,
+                  maxLines: 1,
                   initialValue: vm.getClass(index).status,
                   enabled: editbool,
                   style: TextStyle(fontSize: 18),
@@ -161,6 +184,7 @@ class EditBody extends StatelessWidget {
                     vm.updateClass(
                         id: vm.getClass(index).id,
                         data: Class(
+                          classTitle: _class.classTitle,
                           classDate: _class.classDate,
                           classTime: _class.classTime,
                           classLink: _class.classLink,
@@ -174,6 +198,24 @@ class EditBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  TextButton(
+                    child: Text("Delete".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(10)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.red)))),
+                    onPressed: () {
+                      vm.deleteClass(vm.getClass(index).id);
+                      _openClassScreen(context);
+                    }),
+                  SizedBox(width:50.0),
                   TextButton(
                     child: Text("Edit".toUpperCase(),
                         style: TextStyle(fontSize: 12)),
@@ -201,6 +243,44 @@ class EditBody extends StatelessWidget {
             ),
             Visibility(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    child: Text("Join".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(10)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.blue)))),
+                    onPressed: () {
+                    vm.updateClass(
+                        id: vm.getClass(index).id,
+                        data: Class(
+                          classTitle: _class.classTitle,
+                          classDate: _class.classDate,
+                          classTime: _class.classTime,
+                          classLink: _class.classLink,
+                          tutorID: _class.tutorID,
+                          studentID: _class.studentID,
+                          status: "Not Available",
+                        ));
+                    _openEditScreen(context, index, 'View');
+                    },
+                  )
+                ],
+              ),
+              visible: (vm.getUser(vm.user.uid).userType == "S" && vm.getClass(index).status=="Available" )
+                      ? true
+                      : false,
+            ),
+            Visibility(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(
@@ -224,50 +304,7 @@ class EditBody extends StatelessWidget {
               ),
               visible: addbool ? false : editbool,
             ),
-            Visibility(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                      child: Text("Cancel".toUpperCase(),
-                          style: TextStyle(fontSize: 12)),
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.red),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(110.0),
-                                      side: BorderSide(color: Colors.red)))),
-                      onPressed: () async {
-                        vm.deleteClass(vm.getClass(index).id);
-                        _openClassScreen(context);
-                      }),
-                  ElevatedButton(
-                      child: Text("Add Topic".toUpperCase(),
-                          style: TextStyle(fontSize: 12)),
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.indigo),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(110.0),
-                                      side: BorderSide(color: Colors.indigo)))),
-                      onPressed: () {
-                        _openEditScreen(context, index, 'View');
-                      }),
-                ],
-              ),
-              visible: addbool,
-            ),
-          ],
+],
         );
       },
     )));

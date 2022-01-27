@@ -4,12 +4,15 @@ import '../../models/user.dart';
 import '../../app/service_locator.dart';
 import '../../services/number/number_service.dart';
 import '../../models/number.dart';
+import '../../services/user/user_service.dart';
 import '../viewmodel.dart';
 import '../../services/user/user_repository.dart';
 
 class HomeViewmodel extends Viewmodel {
   List<Number> _list;
   final NumberService _service = locator();
+  UserService get dataService => locator<UserService>();
+
   StreamSubscription _streamObserver;
   bool get isObservingStream => _streamObserver != null;
 
@@ -38,6 +41,7 @@ class HomeViewmodel extends Viewmodel {
                     .map((doc) => Number.fromJson(doc.data()))
                     .toList()),
             onError: (e) => print(e));
+             _ulist = await dataService.fetchUsers();
 
         super.init();
       });
@@ -84,4 +88,12 @@ class HomeViewmodel extends Viewmodel {
     _list = null;
     await _userRepository.signOut();
   }
+
+
+  List<User> _ulist;
+  User getUser(id) {
+    int i = _ulist.indexWhere((user) => user.uid == id);
+    return _ulist[i];
+  }
+  
 }

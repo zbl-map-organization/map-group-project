@@ -23,7 +23,6 @@ class Float extends StatelessWidget {
                 child: Icon(Icons.add),
                 tooltip: 'Add a New Class',
                 onPressed: () {
-                  vm.addClass(Class());
                   _openEditScreen(context, vm.list.length, 'Add');
                 }),
           ],

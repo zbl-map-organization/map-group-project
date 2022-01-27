@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../home/home_drawer.dart';
 import '../../view.dart';
 import '../topic_viewmodel.dart';
+import 'add_topic_body.dart';
 import 'input_app_bar.dart';
 import 'input_body.dart';
 
@@ -34,7 +35,9 @@ class _InputScreenState extends State<InputScreen> {
       return Scaffold(
         appBar: InputAppBar(widget.text),
         drawer: HomeDrawer(),
-        body: InputBody(widget.index, widget.editbool, widget.addbool),
+        body: widget.addbool
+            ? AddTopicBody()
+            : InputBody(widget.index, widget.editbool, widget.addbool),
       );
     });
   }

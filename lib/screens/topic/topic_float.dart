@@ -23,7 +23,6 @@ class TopicFloat extends StatelessWidget {
                 child: Icon(Icons.add),
                 tooltip: 'Add a New Topic',
                 onPressed: () {
-                  vm.addTopic(Topic());
                   _openInputScreen(context, vm.list.length, 'Add');
                 }),
           ],

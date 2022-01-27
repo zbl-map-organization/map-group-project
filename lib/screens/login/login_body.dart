@@ -14,21 +14,29 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View<LoginViewmodel>(
+    return  Scaffold(
+    body: View<LoginViewmodel>(
       builder: (context, viewmodel, _) => Column(
+      
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
+        
         children: [
+          SizedBox(
+            height: 200,
+          child:
+          Image.asset('assets/Votion_login.gif')),
+          const SizedBox(height: 10),
           ...buildLoginTextFields(_state),
           if (viewmodel.errorMessage != null)
             Text(
               viewmodel.errorMessage,
               style: TextStyle(color: Colors.red, fontSize: 20.0),
             ),
-          const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
           LoginButtons(viewmodel: viewmodel, state: _state),
         ],
       ),
-    );
+    ));
   }
 }

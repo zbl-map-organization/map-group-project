@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:setup_mvvm/screens/home/home_page.dart';
 
 import 'home_screen_unsigned_in.dart';
 import 'home_screen_signed_in.dart';
@@ -12,6 +13,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return View<HomeViewmodel>(
         builder: (_, vm, __) =>
-            vm.user != null ? HomeScreenSignedIn() : HomeScreenUnsignedIn());
+            vm.user != null ?HomePage() : HomeScreenUnsignedIn());
   }
 }

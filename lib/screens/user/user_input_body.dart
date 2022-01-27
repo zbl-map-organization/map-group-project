@@ -59,7 +59,7 @@ class UserInputBody extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) {
-               user.username = value;
+                user.username = value;
                 vm.updateUser(
                   id: user.uid,
                   data: User(
@@ -101,34 +101,71 @@ class UserInputBody extends StatelessWidget {
                   );
                 }),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            child: TextFormField(
-                initialValue: vm.getUser(user.uid).userType,
-                enabled: editbool,
-                decoration: InputDecoration(
-                  // icon: Icon(Icons.person),
-                  labelText: 'UserType',
-                  labelStyle: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 20,
-                      fontFamily: 'AvenirLight'),
-                  hintText: 'Type your User Type here',
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (value) {
-                  user.userType = value;
-                  vm.updateUser(
-                    id: user.uid,
-                    data: User(
-                        username: vm.getUser(user.uid).username,
-                        name: vm.getUser(user.uid).name,
-                        userType: value,
-                        phone: vm.getUser(user.uid).phone,
-                        email: vm.getUser(user.uid).email),
-                  );
-                }),
+          Visibility(
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                child: DropdownButtonFormField(
+                    value: vm.getUser(user.uid).userType,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      border: OutlineInputBorder(),
+                    ),
+                    isExpanded: true,
+                    iconSize: 30.0,
+                    hint: Text('Select your User Type here'),
+                    items: ['S', 'V'].map(
+                      (val) {
+                        return DropdownMenuItem<String>(
+                          value: val,
+                          child: Text(val),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (value) {
+                      user.userType = value;
+                      vm.updateUser(
+                        id: user.uid,
+                        data: User(
+                            username: vm.getUser(user.uid).username,
+                            name: vm.getUser(user.uid).name,
+                            userType: value,
+                            phone: vm.getUser(user.uid).phone,
+                            email: vm.getUser(user.uid).email),
+                      );
+                    })),
+            visible: editbool,
+          ),
+          Visibility(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              child: TextFormField(
+                  initialValue: vm.getUser(user.uid).userType,
+                  enabled: editbool,
+                  decoration: InputDecoration(
+                    // icon: Icon(Icons.person),
+                    labelText: 'UserType',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type your User Type here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    user.userType = value;
+                    vm.updateUser(
+                      id: user.uid,
+                      data: User(
+                          username: vm.getUser(user.uid).username,
+                          name: vm.getUser(user.uid).name,
+                          userType: value,
+                          phone: vm.getUser(user.uid).phone,
+                          email: vm.getUser(user.uid).email),
+                    );
+                  }),
+            ),
+            visible: !editbool,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),

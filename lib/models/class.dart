@@ -1,5 +1,6 @@
 class Class {
   dynamic _id;
+  String _classTitle;
   String _classDate;
   String _classLink;
   String _classTime;
@@ -9,6 +10,9 @@ class Class {
 
   get id => _id;
   set id(value) => _id = id;
+
+  get classTitle => _classTitle;
+  set classTitle(value) => _classTitle = value;
 
   get classDate => _classDate;
   set classDate(value) => _classDate = value;
@@ -28,8 +32,9 @@ class Class {
   get status => _status;
   set status(value) => _status = value;
 
-  Class({id, classDate, classLink, classTime, tutorID, studentID, status})
+  Class({id, classTitle,classDate, classLink, classTime, tutorID, studentID, status})
       : _id = id,
+        _classTitle = classTitle,
         _classDate = classDate,
         _classLink = classLink,
         _classTime = classTime,
@@ -40,6 +45,7 @@ class Class {
   Class.copy(Class from)
       : this(
             id: from.id,
+            classTitle: from.classTitle,
             classDate: from.classDate,
             classLink: from.classLink,
             classTime: from.classTime,
@@ -50,6 +56,7 @@ class Class {
   Class.fromJson(Map<String, dynamic> json)
       : this(
             id: json['id'],
+            classTitle: json['classTitle'],
             classDate: json['classDate'],
             classLink: json['classLink'],
             classTime: json['classTime'],
@@ -59,6 +66,7 @@ class Class {
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        'classTitle': classTitle,
         'classDate': classDate,
         'classLink': classLink,
         'classTime': classTime,
@@ -67,8 +75,9 @@ class Class {
         'status': status,
       };
 
-  Class copyWith({id, classDate, classLink, classTime, form}) => Class(
+  Class copyWith({id, classTitle, classDate, classLink, classTime, form}) => Class(
         id: id ?? this.id,
+        classTitle: classTitle ?? this.classTitle,
         classDate: classDate ?? this.classDate,
         classLink: classLink ?? this.classLink,
         classTime: classTime ?? this.classTime,

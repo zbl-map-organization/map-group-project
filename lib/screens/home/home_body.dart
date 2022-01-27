@@ -10,15 +10,9 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SelectorView<HomeViewmodel, int>(
-        showProgressIndicator: false,
-        selector: (_, vm) => vm.dataCount,
-        builder: (_, vm, __, ___) => ListView.separated(
-          itemCount: vm.dataCount,
-          separatorBuilder: (_, __) => Divider(),
-          itemBuilder: (_, index) => NumberListTile(index),
-        ),
-      ),
+      child: Column(children:[
+      Image.asset('assets/design6.jpg'),
+      ])
     );
   }
 }
