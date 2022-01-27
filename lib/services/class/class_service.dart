@@ -1,7 +1,6 @@
 // Turn of null-safety by writing the following line
 // @dart=2.9
 import 'dart:async';
-
 import '../../app/service_locator.dart';
 import '../user/user_repository.dart';
 import '../../models/user.dart';
@@ -25,7 +24,6 @@ abstract class ClassService {
   Future<void> removeClass(id);
   Future<Class> addClass(Class data);
 
-  
   // this getter is to be overidden, if the service supports stream such as firestore
   Stream get stream => null;
 

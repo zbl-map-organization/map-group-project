@@ -18,6 +18,11 @@ class HomeViewmodel extends Viewmodel {
 
   final UserRepository _userRepository = locator();
   User get user => _userRepository.user;
+  List<User> _ulist;
+  User getUser(id) {
+    int i = _ulist.indexWhere((user) => user.uid == id);
+    return _ulist[i];
+  }
 
   HomeViewmodel() {
     _userRepository.addListener(() {
@@ -41,7 +46,7 @@ class HomeViewmodel extends Viewmodel {
                     .map((doc) => Number.fromJson(doc.data()))
                     .toList()),
             onError: (e) => print(e));
-             _ulist = await dataService.fetchUsers();
+        _ulist = await dataService.fetchUsers();
 
         super.init();
       });
@@ -88,12 +93,4 @@ class HomeViewmodel extends Viewmodel {
     _list = null;
     await _userRepository.signOut();
   }
-
-
-  List<User> _ulist;
-  User getUser(id) {
-    int i = _ulist.indexWhere((user) => user.uid == id);
-    return _ulist[i];
-  }
-  
 }

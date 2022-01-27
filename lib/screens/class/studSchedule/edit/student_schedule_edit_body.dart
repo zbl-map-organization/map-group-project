@@ -1,22 +1,19 @@
-import '../../../models/class.dart';
-import '../class_screen.dart';
-import '../class_viewmodel.dart';
-import '../../../screens/view.dart';
+import '../../../../models/class.dart';
+import '../../class_viewmodel.dart';
+import '../../../view.dart';
 import 'package:flutter/material.dart';
 
-import 'edit_screen.dart';
+import '../studSchedule_screen.dart';
 
-class EditBody extends StatelessWidget {
-  void _openClassScreen(context) async {
-    final result = await Navigator.push(context, ClassScreen.route());
+class StudentScheduleEditBody extends StatelessWidget {
+  void _openStudScheduleScreen(context) async {
+    final result = await Navigator.push(context, StudScheduleScreen.route());
     if (result != null) {}
   }
 
   final int index;
-  final bool editbool;
-  final bool addbool;
-  final bool joinbool;
-  EditBody(this.index, this.editbool, this.addbool, this.joinbool);
+
+  StudentScheduleEditBody(this.index);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,7 +31,7 @@ class EditBody extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(
                   initialValue: vm.getClass(index).classTitle,
-                  enabled: editbool,
+                  enabled: false,
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     labelText: 'Class Title',
@@ -46,26 +43,13 @@ class EditBody extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(),
                   ),
-                  onChanged: (value) {
-                    _class.classTitle = value;
-                    vm.updateClass(
-                        id: vm.getClass(index).id,
-                        data: Class(
-                          classTitle: value,
-                          classDate: _class.classDate,
-                          classTime: _class.classTime,
-                          classLink: _class.classLink,
-                          tutorID: _class.tutorID,
-                          studentID: _class.studentID,
-                          status: _class.status,
-                        ));
-                  }),
+                  onChanged: (value) {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(
                   initialValue: vm.getClass(index).classDate,
-                  enabled: editbool,
+                  enabled: false,
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     labelText: 'Class Date',
@@ -77,27 +61,14 @@ class EditBody extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(),
                   ),
-                  onChanged: (value) {
-                    _class.classDate = value;
-                    vm.updateClass(
-                        id: vm.getClass(index).id,
-                        data: Class(
-                          classTitle: _class.classTitle,
-                          classDate: value,
-                          classTime: _class.classTime,
-                          classLink: _class.classLink,
-                          tutorID: _class.tutorID,
-                          studentID: _class.studentID,
-                          status: _class.status,
-                        ));
-                  }),
+                  onChanged: (value) {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(
                   maxLines: 3,
                   initialValue: vm.getClass(index).classTime,
-                  enabled: editbool,
+                  enabled: false,
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     labelText: 'Class Time',
@@ -109,27 +80,14 @@ class EditBody extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(),
                   ),
-                  onChanged: (value) {
-                    _class.classTime = value;
-                    vm.updateClass(
-                        id: vm.getClass(index).id,
-                        data: Class(
-                          classTitle: _class.classTitle,
-                          classDate: _class.classDate,
-                          classTime: value,
-                          classLink: _class.classLink,
-                          tutorID: _class.tutorID,
-                          studentID: _class.studentID,
-                          status: _class.status,
-                        ));
-                  }),
+                  onChanged: (value) {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(
                   maxLines: 2,
                   initialValue: vm.getClass(index).classLink,
-                  enabled: editbool,
+                  enabled: false,
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     labelText: 'Class Link',
@@ -141,27 +99,14 @@ class EditBody extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(),
                   ),
-                  onChanged: (value) {
-                    _class.classLink = value;
-                    vm.updateClass(
-                        id: vm.getClass(index).id,
-                        data: Class(
-                          classTitle: _class.classTitle,
-                          classDate: _class.classDate,
-                          classTime: _class.classTime,
-                          classLink: value,
-                          tutorID: _class.tutorID,
-                          studentID: _class.studentID,
-                          status: _class.status,
-                        ));
-                  }),
+                  onChanged: (value) {}),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(
                   maxLines: 1,
                   initialValue: vm.getClass(index).status,
-                  enabled: editbool,
+                  enabled: false,
                   style: TextStyle(fontSize: 18),
                   decoration: InputDecoration(
                     labelText: 'Status',
@@ -173,32 +118,19 @@ class EditBody extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(),
                   ),
-                  onChanged: (value) {
-                    _class.status = value;
-                    vm.updateClass(
-                        id: vm.getClass(index).id,
-                        data: Class(
-                          classTitle: _class.classTitle,
-                          classDate: _class.classDate,
-                          classTime: _class.classTime,
-                          classLink: _class.classLink,
-                          tutorID: _class.tutorID,
-                          studentID: _class.studentID,
-                          status: value,
-                        ));
-                  }),
+                  onChanged: (value) {}),
             ),
             Visibility(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                      child: Text("Join".toUpperCase(),
+                  TextButton(
+                      child: Text("Cancel".toUpperCase(),
                           style: TextStyle(fontSize: 12)),
                       style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(10)),
                           foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
                               MaterialStateProperty.all<Color>(Colors.red),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -215,18 +147,15 @@ class EditBody extends StatelessWidget {
                               classTime: _class.classTime,
                               classLink: _class.classLink,
                               tutorID: _class.tutorID,
-                              studentID: vm.user.uid,
-                              status: "Full",
+                              studentID: null,
+                              status: "Available",
                             ));
-                        _openClassScreen(context);
+                        _openStudScheduleScreen(context);
                       }),
+                  SizedBox(width: 50.0),
                 ],
               ),
-              visible: ((vm.getUser(vm.user.uid).userType) == "V")
-                  ? false
-                  : _class.status == "Available"
-                      ? true
-                      : false,
+              visible: (vm.getClass(index).status == "Full") ? true : false,
             ),
           ],
         );

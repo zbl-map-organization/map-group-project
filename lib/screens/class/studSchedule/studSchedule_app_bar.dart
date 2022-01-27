@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../view.dart';
-
-class ScheduleAppBar extends StatelessWidget implements PreferredSizeWidget {
+class StudScheduleAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title:
-      Text('Schedule'),
+      title: Text('Schedule List'),
     );
   }
 

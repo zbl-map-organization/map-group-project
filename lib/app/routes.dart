@@ -1,3 +1,8 @@
+import 'package:setup_mvvm/screens/class/studSchedule/edit/student_schedule_edit_screen.dart';
+import 'package:setup_mvvm/screens/class/studSchedule/studSchedule_screen.dart';
+import 'package:setup_mvvm/screens/class/tutorSchedule/edit/tutor_schedule_edit_screen.dart';
+import 'package:setup_mvvm/screens/class/tutorSchedule/tutor_schedule_screen.dart';
+
 import '../screens/class/class_screen.dart';
 import '../screens/class/edit/edit_screen.dart';
 
@@ -26,6 +31,16 @@ Route<dynamic> createRoute(settings) {
           index: settings.arguments['index'], text: settings.arguments['text']);
     case '/userInputScreen':
       return UserInputScreen.route(text: settings.arguments['text']);
+    case '/studschedule':
+      return StudScheduleScreen.route();
+    case '/studentscheduleeditScreen':
+      return StudentScheduleEditScreen.route(
+          index: settings.arguments['index']);
+    case '/tutorschedule':
+      return TutorScheduleScreen.route();
+    case '/studentscheduleeditScreen':
+      return TutorScheduleEditScreen.route(
+          index: settings.arguments['index'], text: settings.arguments['text']);
   }
   return null;
 }

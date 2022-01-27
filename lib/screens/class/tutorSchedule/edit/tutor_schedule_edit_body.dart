@@ -1,14 +1,20 @@
-import '../../../models/class.dart';
-import '../class_screen.dart';
-import '../class_viewmodel.dart';
-import '../../../screens/view.dart';
+import '../../../../models/class.dart';
+import '../tutor_schedule_screen.dart';
+import '../../class_viewmodel.dart';
+import '../../../view.dart';
 import 'package:flutter/material.dart';
 
-import 'edit_screen.dart';
+import 'tutor_schedule_edit_screen.dart';
 
 class EditBody extends StatelessWidget {
-  void _openClassScreen(context) async {
-    final result = await Navigator.push(context, ClassScreen.route());
+  void _openEditScreen(context, index, text) async {
+    final result = await Navigator.push(
+        context, TutorScheduleEditScreen.route(index: index, text: text));
+    if (result != null) {}
+  }
+
+  void _openScheduleScreen(context) async {
+    final result = await Navigator.push(context, TutorScheduleScreen.route());
     if (result != null) {}
   }
 
@@ -190,10 +196,58 @@ class EditBody extends StatelessWidget {
             ),
             Visibility(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                      child: Text("Delete".toUpperCase(),
+                          style: TextStyle(fontSize: 12)),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(10)),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.red),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(110.0),
+                                      side: BorderSide(color: Colors.red)))),
+                      onPressed: () {
+                        vm.deleteClass(vm.getClass(index).id);
+                        _openScheduleScreen(context);
+                      }),
+                  SizedBox(width: 50.0),
+                  TextButton(
+                    child: Text("Edit".toUpperCase(),
+                        style: TextStyle(fontSize: 12)),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(10)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(110.0),
+                                    side: BorderSide(color: Colors.blue)))),
+                    onPressed: () {
+                      _openEditScreen(context, index, 'Edit');
+                    },
+                  )
+                ],
+              ),
+              visible: addbool
+                  ? false
+                  : (vm.getUser(vm.user.uid).userType == "V")
+                      ? !editbool
+                      : false,
+            ),
+            Visibility(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(
-                      child: Text("Join".toUpperCase(),
+                      child: Text("Save".toUpperCase(),
                           style: TextStyle(fontSize: 12)),
                       style: ButtonStyle(
                           foregroundColor:
@@ -207,26 +261,11 @@ class EditBody extends StatelessWidget {
                                           BorderRadius.circular(110.0),
                                       side: BorderSide(color: Colors.red)))),
                       onPressed: () {
-                        vm.updateClass(
-                            id: vm.getClass(index).id,
-                            data: Class(
-                              classTitle: _class.classTitle,
-                              classDate: _class.classDate,
-                              classTime: _class.classTime,
-                              classLink: _class.classLink,
-                              tutorID: _class.tutorID,
-                              studentID: vm.user.uid,
-                              status: "Full",
-                            ));
-                        _openClassScreen(context);
+                        _openEditScreen(context, index, 'View');
                       }),
                 ],
               ),
-              visible: ((vm.getUser(vm.user.uid).userType) == "V")
-                  ? false
-                  : _class.status == "Available"
-                      ? true
-                      : false,
+              visible: addbool ? false : editbool,
             ),
           ],
         );

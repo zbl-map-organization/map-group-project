@@ -11,6 +11,7 @@ import '../../models/class.dart';
 
 class ClassServiceFirestore extends ClassService {
   // static const String _userId = 'hm2leHyBDdYoMxF8hyqceJrs9rF2';
+  String get _userId => user.uid;
   final _idGenerator = Uuid();
   final _firestore = Firestore();
 

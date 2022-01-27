@@ -14,11 +14,12 @@ class ClassViewmodel extends Viewmodel {
   final _service = locator<ClassService>();
   List<Class> _list;
   List<Class> get list => _list;
+  Class getClass(int index) => _list == null ? null : _list[index];
+  int get dataCount => _list == null ? 0 : _list.length;
+
   UserService get dataService => locator<UserService>();
   final UserRepository _userRepository = locator();
   User get user => _userRepository.user;
-  Class getClass(int index) => _list == null ? null : _list[index];
-  int get dataCount => _list == null ? 0 : _list.length;
   List<User> _ulist;
   User getUser(id) {
     int i = _ulist.indexWhere((user) => user.uid == id);
