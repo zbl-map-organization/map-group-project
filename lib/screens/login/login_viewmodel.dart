@@ -1,53 +1,31 @@
-import '../../app/dependencies.dart';
-import '../../services/auth/auth_service.dart';
+import 'package:flutter/foundation.dart';
+
 import '../../models/user.dart';
+import '../../app/service_locator.dart';
 import '../viewmodel.dart';
+import '../../services/user/user_repository.dart';
 
 class LoginViewmodel extends Viewmodel {
-  AuthService get _service => dependency();
-  User _user = User();
-  bool _showPassword = false;
-  bool _showErrorMessage = false;
+  final UserRepository _userRepository = locator();
 
-  get user => _user;
-  set user(value) => _user = value;
-
-  get showPassword => _showPassword;
-  set showPassword(value) {
-    turnBusy();
-    _showPassword = value;
-    turnIdle();
+  LoginViewmodel() {
+    _userRepository.addListener(() {
+      notifyListeners();
+    });
   }
 
-  get showErrorMessage => _showErrorMessage;
-  set showErrorMessage(value) {
-    turnBusy();
-    _showErrorMessage = value;
-    turnIdle();
-  }
+  User get user => _userRepository.user;
+  String _errorMessage;
+  String get errorMessage => _errorMessage;
+  set errorMessage(value) => update(() => _errorMessage = value);
 
-  get username => _user.login;
-  set username(value) {
-    turnBusy();
-    _showErrorMessage = false;
-    _user.login = value;
-    turnIdle();
-  }
-
-  get password => _user.password;
-  set password(value) {
-    turnBusy();
-    _showErrorMessage = false;
-    _user.password = value;
-    turnIdle();
-  }
-
-  Future<User> authenticate() async {
-    turnBusy();
-    final User _user =
-        await _service.authenticate(login: username, password: password);
-    if (_user == null) _showErrorMessage = true;
-    turnIdle();
-    return _user;
+  Future<void> signIn(
+      {@required String username, @required String password}) async {
+    await _userRepository.signIn(email: username, password: password);
+    if (_userRepository.user != null) {
+      _errorMessage = null;
+    } else {
+      _errorMessage = _userRepository.error;
+    }
   }
 }

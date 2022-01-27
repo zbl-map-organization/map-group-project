@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.exercise3">
+    package="com.example.setup_mvvm">
    <application
-        android:label="exercise3"
+        android:usesCleartextTraffic="true"
+        android:label="setup_mvvm"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

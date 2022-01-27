@@ -1,10 +1,12 @@
+// Turn of null-safety by writing the following line
+// @dart=2.9
+
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class RestService {
   final String _baseUrl;
-  const RestService({@required baseUrl}) : _baseUrl = baseUrl;
+  const RestService({baseUrl}) : _baseUrl = baseUrl;
 
   // Send a GET request to retrieve data from a REST server
   Future get(String endpoint) async {

@@ -1,0 +1,31 @@
+### Use this file to test out your REST call before implementing them in the code
+
+### Change the IP address below to your PC's IP address. Remain the port number 3000 unchanged
+@baseUrl = http://192.168.0.5:3000
+# @baseUrl = http://localhost:3000
+
+
+### Example request 1 : fetch all numbers
+GET {{baseUrl}}/numbers
+
+### Example request 2 : Get a number
+GET {{baseUrl}}/numbers/1
+
+### Example request 3 : Add a new number
+POST {{baseUrl}}/numbers
+Content-Type: application/json
+
+{
+    "value": -10
+}
+
+### Example request 4 : Update a number
+PUT {{baseUrl}}/numbers/3
+Content-Type: application/json
+
+{
+    "value": 2000
+}
+
+### Example request 5 : Delete a number
+DELETE {{baseUrl}}/numbers/3
