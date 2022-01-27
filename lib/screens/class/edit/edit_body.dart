@@ -17,7 +17,7 @@ class EditBody extends StatelessWidget {
   EditBody(this.index, this.editbool);
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(child: Center(
         child: SelectorView<ClassViewmodel, Class>(
       selector: (_, vm) => vm.getClass(index),
       builder: (_, vm, _class, __) {
@@ -201,6 +201,6 @@ class EditBody extends StatelessWidget {
           ),
         ]);
       },
-    ));
+    )));
   }
 }

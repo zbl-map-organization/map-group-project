@@ -50,6 +50,57 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/Votion.gif
+     - assets/Volunteer Tutoring2.gif
+     - assets/Votion_login.gif 
+     - assets/login.png 
+     - assets/blue3.jpg 
+     - assets/home.gif
+     - assets/FEATURES.gif
+     - assets/avatar.png
+     - assets/avatar1.png
+     - assets/book.png
+     - assets/class.png
+     - assets/schedule.png
+     - assets/people.gif
+     - assets/topicinput.jpg     
+     
+
+fonts:
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Italic-VariableFont_wght.ttf
+        - asset: fonts/Montserrat-VariableFont_wght.ttf
+          style: italic
+    - family: SpectralSC
+      fonts:
+        - asset: fonts/SpectralSC-Medium.ttf
+        - asset: fonts/SpectralSC-MediumItalic.ttf
+          style: italic
+    - family: Acme
+      fonts:
+        - asset: fonts/Acme-Regular.ttf
+    - family: FasterOne
+      fonts:
+        - asset: fonts/FasterOne-Regular.ttf
+    - family: Galada
+      fonts:
+        - asset: fonts/Galada-Regular.ttf
+    - family: MateSC
+      fonts:
+        - asset: fonts/MateSC-Regular.ttf  
+    - family: MeriendaOne
+      fonts:
+        - asset: fonts/MeriendaOne-Regular.ttf 
+    - family: Righteous
+      fonts:
+        - asset: fonts/Righteous-Regular.ttf
+    - family: Sail
+      fonts:
+        - asset: fonts/Sail-Regular.ttf 
+    - family: Shojumaru
+      fonts:
+        - asset: fonts/Shojumaru-Regular.ttf 
+  
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -7,13 +7,12 @@ import 'home_drawer.dart';
 import 'home_float.dart';
 
 class HomeScreenSignedIn extends StatelessWidget {
-  HomeViewmodel _vm;
-  HomeScreenSignedIn(vm) : _vm = vm;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar(),
-      drawer: HomeDrawer(_vm),
+      drawer: HomeDrawer(),
       body: HomeBody(),
       floatingActionButton: HomeFloat(),
     );

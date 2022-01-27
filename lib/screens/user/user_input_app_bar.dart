@@ -6,7 +6,7 @@ class UserInputAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(' $text Topic'),
+      title: Text(' $text Profile'),
       actions: [
         CircleAvatar(
           backgroundColor: Colors.blue.shade200,

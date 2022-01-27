@@ -16,11 +16,11 @@ class UserServiceFirestore extends UserService {
   final _firestore = Firestore();
 
   CollectionReference get _collection => _firestore
-      .collection('user/$_userId/profile'); // use path style to reference
+      .collection('user'); // use path style to reference
   // _firestore.collection('classs').doc(_userId).collection('classs'); // alternative reference
 
   DocumentReference _getUserDocument(userId) => _firestore.document(
-      'users/$_userId/profile/$_userId'); // use path style to reference
+      'users/$_userId'); // use path style to reference
 
   @override
   Stream get stream => _collection.snapshots();

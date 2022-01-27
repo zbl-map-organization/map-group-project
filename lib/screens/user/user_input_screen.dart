@@ -1,5 +1,6 @@
 import '../../screens/user/user_viewmodel.dart';
 import 'package:flutter/material.dart';
+import '../home/home_drawer.dart';
 import '../view.dart';
 import 'user_input_app_bar.dart';
 import 'user_input_body.dart';
@@ -22,6 +23,7 @@ class UserInputScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return View<UserViewmodel>(builder: (_, vm, ___) {
       return Scaffold(
+        drawer: HomeDrawer(),
         appBar: UserInputAppBar(text),
         body: InputBody(index, editbool),
       );

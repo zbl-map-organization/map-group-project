@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'app/service_locator.dart';
 import 'screens/home/home_screen.dart';
+import '../app/routes.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +18,7 @@ void main() async {
       primaryColor: Colors.indigo[800],
     ),
     // home: LoginScreen(),
-    home: HomeScreen(),
+    initialRoute: '/',
+    onGenerateRoute: createRoute,
   ));
 }

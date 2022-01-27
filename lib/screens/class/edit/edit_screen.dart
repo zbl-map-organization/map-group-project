@@ -3,7 +3,7 @@ import '../../view.dart';
 import '../class_viewmodel.dart';
 import 'edit_app_bar.dart';
 import 'edit_body.dart';
-import 'edit_drawer.dart';
+import '../../home/home_drawer.dart';
 
 class EditScreen extends StatelessWidget {
   static Route route({index, text}) =>
@@ -24,7 +24,7 @@ class EditScreen extends StatelessWidget {
     return View<ClassViewmodel>(builder: (_, vm, ___) {
       return Scaffold(
         appBar: EditAppBar(text),
-        drawer: EditDrawer(),
+        drawer: HomeDrawer(),
         body: EditBody(index, editbool),
       );
     });

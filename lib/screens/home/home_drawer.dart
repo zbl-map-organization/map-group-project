@@ -3,10 +3,10 @@ import 'package:setup_mvvm/screens/home/home_viewmodel.dart';
 import '../../screens/user/user_input_screen.dart';
 import '../../screens/class/class_screen.dart';
 import '../../screens/topic/topic_screen.dart';
+import '../view.dart';
 
 class HomeDrawer extends StatelessWidget {
-  HomeViewmodel _vm;
-  HomeDrawer(vm) : _vm = vm;
+
   void _openTopicScreen(context) async {
     final result = await Navigator.push(context, TopicScreen.route());
     if (result != null) {}
@@ -25,7 +25,9 @@ class HomeDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return View<HomeViewmodel>(
+        builder: (_, vm, __) =>
+         Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -49,10 +51,10 @@ class HomeDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text('Profile'),
-            onTap: () => _openUserScreen(context, _vm.user.uid, 'View'),
+            onTap: () => _openUserScreen(context, vm.user.uid, 'View'),
           ),
         ],
       ),
-    );
+    ));
   }
 }

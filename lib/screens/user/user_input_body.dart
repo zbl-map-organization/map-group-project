@@ -19,7 +19,7 @@ class InputBody extends StatelessWidget {
   InputBody(this.index, this.editbool);
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(child: Center(
         child: SelectorView<UserViewmodel, User>(
       selector: (_, vm) => vm.getUser(),
       builder: (_, vm, user, __) {
@@ -49,7 +49,7 @@ class InputBody extends StatelessWidget {
               enabled: editbool,
               decoration: InputDecoration(
                 icon: Icon(Icons.person),
-                labelText: 'UserID',
+                labelText: 'Username',
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
@@ -72,11 +72,11 @@ class InputBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
               maxLines: 4,
-              initialValue: vm.getUser().password,
+              initialValue: vm.getUser().email,
               enabled: editbool,
               decoration: InputDecoration(
                 icon: Icon(Icons.lock),
-                labelText: 'Name',
+                labelText: 'Email',
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
@@ -88,10 +88,10 @@ class InputBody extends StatelessWidget {
               onChanged: (value) => vm.updateUser(
                 User(
                     username: user.username,
-                    password: value,
+                    password: user.password,
                     uid: user.uid,
                     name: user.name,
-                    email: user.email),
+                    email: value),
               ),
             ),
           ),
@@ -99,11 +99,11 @@ class InputBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
               maxLines: 2,
-              initialValue: vm.getUser().uid,
+              initialValue: vm.getUser().name,
               enabled: editbool,
               decoration: InputDecoration(
                 icon: Icon(Icons.person),
-                labelText: 'PhotoURL',
+                labelText: 'Name',
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
@@ -116,8 +116,8 @@ class InputBody extends StatelessWidget {
                 User(
                     username: user.username,
                     password: user.password,
-                    uid: value,
-                    name: user.name,
+                    uid: user.uid,
+                    name: value,
                     email: user.email),
               ),
             ),
@@ -222,6 +222,6 @@ class InputBody extends StatelessWidget {
           ),
         ]);
       },
-    ));
+    )));
   }
 }

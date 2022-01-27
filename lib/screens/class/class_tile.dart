@@ -22,9 +22,8 @@ class ClassTile extends StatelessWidget {
         return ListTile(
           tileColor: Colors.blue[50],
           selectedTileColor: Colors.blue[100],
-          title: Text('Date: ${_class.classDate}   Time: ${_class.classTime}'),
-          subtitle:
-              Text('Status: ${_class.status} \nClass Link:${_class.classLink}'),
+          title: Text('Date: ${_class.classDate}   Time: ${_class.classTime}', ),
+          subtitle: Text('Status :${_class.status} \nClass Link:${_class.classLink}'),
           onTap: () => _openEditScreen(context, index, 'View'),
         );
       },

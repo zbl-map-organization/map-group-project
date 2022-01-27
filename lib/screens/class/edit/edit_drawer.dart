@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../screens/class/class_screen.dart';
 import '../../../screens/topic/topic_screen.dart';
+import '../../../screens/user/user_input_screen.dart';
+
 
 class EditDrawer extends StatelessWidget {
   void _openTopicScreen(context) async {
@@ -10,6 +12,12 @@ class EditDrawer extends StatelessWidget {
 
   void _openClassScreen(context) async {
     final result = await Navigator.push(context, ClassScreen.route());
+    if (result != null) {}
+  }
+
+  void _openUserScreen(context) async {
+    final result = await Navigator.push(
+        context, UserInputScreen.route());
     if (result != null) {}
   }
 
@@ -39,7 +47,7 @@ class EditDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text('Profile'),
-            onTap: () {},
+            onTap: ()=>_openUserScreen(context),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../screens/topic/topic_drawer.dart';
+import '../home/home_drawer.dart';
 import '../topic/topic_viewmodel.dart';
 import '../view.dart';
 import 'topic_app_bar.dart';
@@ -14,7 +15,7 @@ class TopicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: TopicAppBar(),
-        drawer: TopicDrawer(),
+        drawer: HomeDrawer(),
         body: TopicBody(),
         floatingActionButton: TopicFloat());
   }

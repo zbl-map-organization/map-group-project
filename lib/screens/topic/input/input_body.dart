@@ -17,7 +17,7 @@ class InputBody extends StatelessWidget {
   InputBody(this.index, this.editbool);
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(child: Center(
         child: SelectorView<TopicViewmodel, Topic>(
       selector: (_, vm) => vm.getTopic(index),
       builder: (_, vm, topic, __) {
@@ -230,6 +230,6 @@ class InputBody extends StatelessWidget {
           ),
         ]);
       },
-    ));
+    )));
   }
 }

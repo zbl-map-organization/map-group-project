@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../home/home_drawer.dart';
 import '../../view.dart';
 import '../topic_viewmodel.dart';
 import 'input_app_bar.dart';
@@ -23,7 +24,7 @@ class InputScreen extends StatelessWidget {
     return View<TopicViewmodel>(builder: (_, vm, ___) {
       return Scaffold(
         appBar: InputAppBar(text),
-        drawer: InputDrawer(),
+        drawer: HomeDrawer(),
         body: InputBody(index, editbool),
       );
     });

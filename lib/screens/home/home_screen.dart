@@ -12,6 +12,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return View<HomeViewmodel>(
         builder: (_, vm, __) =>
-            vm.user != null ? HomeScreenSignedIn(vm) : HomeScreenUnsignedIn());
+            vm.user != null ? HomeScreenSignedIn() : HomeScreenUnsignedIn());
   }
 }

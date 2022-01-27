@@ -44,7 +44,6 @@ class ClassServiceFirestore extends ClassService {
 
   @override
   Future<Class> updateClass({id, Class data}) async {
-    print('Firebase Update Class $id');
     final update = data.copyWith(id: id);
     await _getClassDocument(id).update(update.toJson());
     return update;
