@@ -1,6 +1,9 @@
 // @dart=2.9
 
 import 'package:get_it/get_it.dart';
+import '../screens/user/user_viewmodel.dart';
+import '../services/user/user_service.dart';
+import '../services/user/user_service_firestore.dart';
 
 import '../screens/login/login_viewmodel.dart';
 import '../services/user/user_repository.dart';
@@ -47,6 +50,7 @@ void initializeServiceLocator() {
       () => AuthenticationServiceFirebase());
   locator.registerLazySingleton<ClassService>(() => ClassServiceFirestore());
   locator.registerLazySingleton<TopicService>(() => TopicServiceFirestore());
+  locator.registerLazySingleton<UserService>(() => UserServiceFirestore());
   // Repositories
   locator.registerLazySingleton<UserRepository>(() => UserRepository());
 
@@ -55,4 +59,5 @@ void initializeServiceLocator() {
   locator.registerLazySingleton<LoginViewmodel>(() => LoginViewmodel());
   locator.registerLazySingleton<TopicViewmodel>(() => TopicViewmodel());
   locator.registerLazySingleton<ClassViewmodel>(() => ClassViewmodel());
+  locator.registerLazySingleton<UserViewmodel>(() => UserViewmodel());
 }

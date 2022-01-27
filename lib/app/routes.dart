@@ -1,5 +1,5 @@
-import 'package:setup_mvvm/screens/class/class_screen.dart';
-import 'package:setup_mvvm/screens/class/edit/edit_screen.dart';
+import '../screens/class/class_screen.dart';
+import '../screens/class/edit/edit_screen.dart';
 
 import '../screens/home/home_screen.dart';
 
@@ -7,6 +7,7 @@ import '../screens/topic/input/input_screen.dart';
 
 import '../screens/topic/topic_screen.dart';
 
+import '../screens/user/user_input_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> createRoute(settings) {
@@ -22,6 +23,9 @@ Route<dynamic> createRoute(settings) {
       return ClassScreen.route();
     case '/editScreen':
       return EditScreen.route(
+          index: settings.arguments['index'], text: settings.arguments['text']);
+    case '/userInputScreen':
+      return UserInputScreen.route(
           index: settings.arguments['index'], text: settings.arguments['text']);
   }
   return null;

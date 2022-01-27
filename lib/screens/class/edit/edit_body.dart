@@ -32,7 +32,7 @@ class EditBody extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50.0),
               ),
               child: new Icon(
-                Icons.menu_book,
+                Icons.event_note_sharp,
                 size: 50,
                 color: Colors.white,
               ),
@@ -62,6 +62,7 @@ class EditBody extends StatelessWidget {
                         classDate: value,
                         classTime: _class.classTime,
                         classLink: _class.classLink,
+                        status: _class.status,
                       ));
                 }),
           ),
@@ -90,6 +91,7 @@ class EditBody extends StatelessWidget {
                         classDate: _class.classDate,
                         classTime: value,
                         classLink: _class.classLink,
+                        status: _class.status,
                       ));
                 }),
           ),
@@ -118,6 +120,36 @@ class EditBody extends StatelessWidget {
                         classDate: _class.classDate,
                         classTime: _class.classTime,
                         classLink: value,
+                        status: _class.status,
+                      ));
+                }),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: TextFormField(
+                maxLines: 2,
+                initialValue: vm.getClass(index).status,
+                enabled: editbool,
+                style: TextStyle(fontSize: 18),
+                decoration: InputDecoration(
+                  labelText: 'Status',
+                  labelStyle: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      fontFamily: 'AvenirLight'),
+                  hintText: 'Type the class status here',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  _class.status = value;
+                  vm.updateClass(
+                      id: vm.getClass(index).id,
+                      data: Class(
+                        classDate: _class.classDate,
+                        classTime: _class.classTime,
+                        classLink: _class.classLink,
+                        status: value,
                       ));
                 }),
           ),

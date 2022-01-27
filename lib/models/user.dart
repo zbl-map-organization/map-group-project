@@ -6,7 +6,7 @@
 class User {
   final String username;
   final String password;
-  final String uid;
+  final dynamic uid;
   final String token;
   final String name;
   final String email;
@@ -18,6 +18,14 @@ class User {
       this.token = '',
       this.name = '',
       this.email = ''});
+  User.copy(User from)
+      : this(
+            username: from.username,
+            password: from.password,
+            uid: from.uid,
+            token: from.token,
+            name: from.name,
+            email: from.email);
 
   User.fromJson(Map<String, dynamic> json)
       : this(
