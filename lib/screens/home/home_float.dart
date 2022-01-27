@@ -8,10 +8,6 @@ import '../view.dart';
 import 'home_viewmodel.dart';
 
 class HomeFloat extends StatelessWidget {
-  const HomeFloat({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final a = Random();

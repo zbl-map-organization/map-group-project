@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import '../../models/user.dart';
 
 abstract class AuthenticationService {
+  Future<void> authAddUser({@required String email, @required String password});
+
   Future<void> signIn(
       {@required String email,
       @required String password,

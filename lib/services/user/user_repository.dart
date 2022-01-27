@@ -56,6 +56,29 @@ class UserRepository extends Repository {
         },
       );
 
+  Future<String> addUser(
+      {@required String email, @required String password}) async {
+    await _authService.authAddUser(email: email, password: password);
+    await _authService.signIn(
+      email: email,
+      password: password,
+      onSuccess: (user) {
+        _user = user.copyWith();
+        _error = null;
+      },
+      onError: (e) async {
+        _user = null;
+        _error = e.toString();
+        await notifyListeners();
+      },
+    );
+    String uid = user.uid;
+    await notifyListeners(
+        onNotify: () =>
+            _authService.signOut(onSuccess: () => _user = _error = null));
+    return uid;
+  }
+
   Future<void> signIn(
       {@required String email, @required String password}) async {
     if (_user != null) return; // sign in only if not signed in

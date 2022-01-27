@@ -24,7 +24,7 @@ class TopicServiceLocal extends TopicService {
 
   Future<void> _writeCacheToLocal() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('classes', jsonEncode(_cachedDb));
+    await prefs.setString('users', jsonEncode(_cachedDb));
   }
 
   @override
@@ -38,9 +38,9 @@ class TopicServiceLocal extends TopicService {
 
   @override
   Future<Topic> getTopic(id) async {
-    Topic _class = _cachedDb.firstWhere((n) => n.id == id, orElse: null);
-    if (_class == null) return null;
-    return Topic.copy(_class);
+    Topic _topic = _cachedDb.firstWhere((n) => n.id == id, orElse: null);
+    if (_topic == null) return null;
+    return Topic.copy(_topic);
   }
 
   @override
@@ -63,9 +63,9 @@ class TopicServiceLocal extends TopicService {
   Future<Topic> addTopic(Topic data) async {
     final id =
         (_cachedDb != null && _cachedDb.length > 0) ? _cachedDb.last.id + 1 : 1;
-    final Topic _class = data.copyWith(id: id);
-    _cachedDb.add(_class);
+    final Topic _topic = data.copyWith(id: id);
+    _cachedDb.add(_topic);
     _writeCacheToLocal();
-    return Topic.copy(_class);
+    return Topic.copy(_topic);
   }
 }

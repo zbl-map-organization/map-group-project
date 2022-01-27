@@ -3,6 +3,8 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
+import 'package:setup_mvvm/app/service_locator.dart';
 
 import '../../models/user.dart'
     as AppUser; // To resolve conflict with firebase 'User' class
@@ -13,6 +15,16 @@ import 'authentication_service.dart';
 class AuthenticationServiceFirebase extends AuthenticationService {
   final _firebaseAuth = FirebaseAuthentication();
   FirebaseAuth get _auth => _firebaseAuth.auth;
+
+  Future<void> authAddUser(
+      {@required String email, @required String password}) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      print(e);
+    }
+  }
 
   Future<void> signIn(
       {@required String email,

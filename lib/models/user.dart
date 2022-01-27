@@ -10,6 +10,8 @@ class User {
   final String token;
   final String name;
   final String email;
+  final String phone;
+  final String userType;
 
   const User(
       {this.username = '',
@@ -17,7 +19,9 @@ class User {
       this.uid = '',
       this.token = '',
       this.name = '',
-      this.email = ''});
+      this.email = '',
+      this.phone,
+      this.userType});
   User.copy(User from)
       : this(
             username: from.username,
@@ -25,7 +29,9 @@ class User {
             uid: from.uid,
             token: from.token,
             name: from.name,
-            email: from.email);
+            email: from.email,
+            phone: from.phone,
+            userType: from.userType);
 
   User.fromJson(Map<String, dynamic> json)
       : this(
@@ -34,7 +40,9 @@ class User {
             uid: json['uid'],
             token: json['token'],
             name: json['name'],
-            email: json['email']);
+            email: json['email'],
+            phone: json['phone'],
+            userType: json['userType']);
 
   Map<String, dynamic> toJson() => {
         'username': username,
@@ -42,14 +50,19 @@ class User {
         'uid': uid,
         'token': token,
         'name': name,
-        'email': email
+        'email': email,
+        'phone': phone,
+        'userType': userType
       };
 
-  copyWith({username, password, uid, token, name, email}) => User(
-      username: username ?? this.username,
-      password: password ?? this.password,
-      uid: uid ?? this.uid,
-      token: token ?? this.token,
-      name: name ?? this.name,
-      email: email ?? this.email);
+  copyWith({username, password, uid, token, name, email, phone, userType}) =>
+      User(
+          username: username ?? this.username,
+          password: password ?? this.password,
+          uid: uid ?? this.uid,
+          token: token ?? this.token,
+          name: name ?? this.name,
+          email: email ?? this.email,
+          phone: phone ?? this.phone,
+          userType: userType ?? this.userType);
 }

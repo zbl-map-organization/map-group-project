@@ -19,7 +19,7 @@ class InputBody extends StatelessWidget {
   InputBody(this.index, this.editbool);
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Center(
+    return Center(
         child: SelectorView<UserViewmodel, User>(
       selector: (_, vm) => vm.getUser(),
       builder: (_, vm, user, __) {
@@ -48,22 +48,22 @@ class InputBody extends StatelessWidget {
               initialValue: vm.getUser().username,
               enabled: editbool,
               decoration: InputDecoration(
-                icon: Icon(Icons.person),
-                labelText: 'Username',
+                // icon: Icon(Icons.person),
+                labelText: 'UserID',
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
                     fontFamily: 'AvenirLight'),
-                hintText: 'Type the userid here',
+                hintText: 'Type your UserID here',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) => vm.updateUser(
                 User(
                     username: value,
-                    password: user.password,
-                    uid: user.uid,
                     name: user.name,
+                    userType: user.userType,
+                    phone: user.phone,
                     email: user.email),
               ),
             ),
@@ -71,53 +71,51 @@ class InputBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
-              maxLines: 4,
-              initialValue: vm.getUser().email,
-              enabled: editbool,
-              decoration: InputDecoration(
-                icon: Icon(Icons.lock),
-                labelText: 'Email',
-                labelStyle: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 20,
-                    fontFamily: 'AvenirLight'),
-                hintText: 'Type the name here',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) => vm.updateUser(
-                User(
-                    username: user.username,
-                    password: user.password,
-                    uid: user.uid,
-                    name: user.name,
-                    email: value),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            child: TextFormField(
-              maxLines: 2,
               initialValue: vm.getUser().name,
               enabled: editbool,
               decoration: InputDecoration(
-                icon: Icon(Icons.person),
+                // icon: Icon(Icons.person),
                 labelText: 'Name',
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
                     fontFamily: 'AvenirLight'),
-                hintText: 'Type the photourl here',
+                hintText: 'Type your name here',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) => vm.updateUser(
                 User(
                     username: user.username,
-                    password: user.password,
-                    uid: user.uid,
                     name: value,
+                    userType: user.userType,
+                    phone: user.phone,
+                    email: user.email),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+            child: TextFormField(
+              initialValue: vm.getUser().userType,
+              enabled: editbool,
+              decoration: InputDecoration(
+                // icon: Icon(Icons.person),
+                labelText: 'UserType',
+                labelStyle: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 20,
+                    fontFamily: 'AvenirLight'),
+                hintText: 'Type your User Type here',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) => vm.updateUser(
+                User(
+                    username: user.username,
+                    name: user.name,
+                    userType: value,
+                    phone: user.phone,
                     email: user.email),
               ),
             ),
@@ -126,25 +124,25 @@ class InputBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: TextFormField(
               // keyboardType: TextInputType.number,
-              initialValue: vm.getUser().name,
+              initialValue: vm.getUser().phone,
               enabled: editbool,
               decoration: InputDecoration(
-                icon: Icon(Icons.mail),
-                labelText: 'Login',
+                // icon: Icon(Icons.phone),
+                labelText: 'Telephone No.',
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
                     fontFamily: 'AvenirLight'),
-                hintText: 'Type the login here',
+                hintText: 'Type your phone number here',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) => vm.updateUser(
                 User(
                     username: user.username,
-                    password: user.password,
-                    uid: user.uid,
-                    name: value,
+                    name: user.name,
+                    userType: user.userType,
+                    phone: value,
                     email: user.email),
               ),
             ),
@@ -156,22 +154,22 @@ class InputBody extends StatelessWidget {
               initialValue: vm.getUser().email,
               enabled: editbool,
               decoration: InputDecoration(
-                icon: Icon(Icons.phone),
+                // icon: Icon(Icons.mail),
                 labelStyle: TextStyle(
                     color: Colors.black54,
                     fontSize: 20,
                     fontFamily: 'AvenirLight'),
-                labelText: 'Password',
-                hintText: 'Type the passworde here',
+                labelText: 'Email Address',
+                hintText: 'Type your email address here',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) => vm.updateUser(
                 User(
                     username: user.username,
-                    password: user.password,
-                    uid: user.uid,
                     name: user.name,
+                    userType: user.userType,
+                    phone: user.phone,
                     email: value),
               ),
             ),
@@ -222,6 +220,6 @@ class InputBody extends StatelessWidget {
           ),
         ]);
       },
-    )));
+    ));
   }
 }

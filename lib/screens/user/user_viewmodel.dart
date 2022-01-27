@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../app/service_locator.dart';
 import '../../services/user/user_service.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +10,8 @@ import '../../services/user/user_repository.dart';
 
 class UserViewmodel extends Viewmodel {
   UserViewmodel();
+  StreamSubscription _streamObserver;
+  bool get isObservingStream => _streamObserver != null;
   UserService get dataService => locator<UserService>();
   final UserRepository _userRepository = locator();
   User getUser() => _userRepository.user;
@@ -39,5 +43,14 @@ class UserViewmodel extends Viewmodel {
     final updateUser = await dataService.updateUser(data: user);
     user = updateUser;
     turnIdle();
+  }
+
+  Future<String> authAddUser(
+      {@required String email, @required String password}) async {
+    _streamObserver?.cancel();
+    _streamObserver = null;
+    String uid =
+        await _userRepository.addUser(email: email, password: password);
+    return uid;
   }
 }

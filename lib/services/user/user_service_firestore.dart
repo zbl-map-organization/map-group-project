@@ -15,12 +15,12 @@ class UserServiceFirestore extends UserService {
   final _idGenerator = Uuid();
   final _firestore = Firestore();
 
-  CollectionReference get _collection => _firestore
-      .collection('user'); // use path style to reference
+  CollectionReference get _collection =>
+      _firestore.collection('users'); // use path style to reference
   // _firestore.collection('classs').doc(_userId).collection('classs'); // alternative reference
 
-  DocumentReference _getUserDocument(userId) => _firestore.document(
-      'users/$_userId'); // use path style to reference
+  DocumentReference _getUserDocument(userId) =>
+      _firestore.document('users/$_userId'); // use path style to reference
 
   @override
   Stream get stream => _collection.snapshots();
@@ -45,7 +45,7 @@ class UserServiceFirestore extends UserService {
 
   @override
   Future<User> addUser(User data) async {
-    final _id = _idGenerator.v1(); // Generate time-based id
+    final _id = data.uid; // Generate time-based id
     final _data = data.copyWith(uid: _id); // add generated id the data
     await _collection.doc('$_id').set(_data.toJson());
     return _data;

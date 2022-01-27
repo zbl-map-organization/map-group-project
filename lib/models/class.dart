@@ -1,5 +1,3 @@
-//! Define the model class here
-
 class Class {
   dynamic _id;
   String _classDate;
@@ -19,7 +17,7 @@ class Class {
   get classTime => _classTime;
   set classTime(value) => _classTime = value;
 
-  get status =>_status;
+  get status => _status;
   set status(value) => _status = value;
 
   Class({id, classDate, classLink, classTime, status})
@@ -59,5 +57,5 @@ class Class {
         classLink: classLink ?? this.classLink,
         classTime: classTime ?? this.classTime,
         status: status ?? this.status,
-          );
+      );
 }
