@@ -10,6 +10,7 @@ void main() async {
   initializeServiceLocator();
 
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     title: 'Flutter List App Demo',
     theme: ThemeData(
       primarySwatch: Colors.indigo,

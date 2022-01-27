@@ -5,21 +5,7 @@ class TopicAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text('Topic List'),
-      actions: [
-        CircleAvatar(
-          backgroundColor: Colors.blue.shade200,
-          child: IconButton(
-            icon: Icon(
-              Icons.person,
-              color: Colors.blue,
-            ),
-            onPressed: () => {},
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-      ],
+      
     );
   }
 
