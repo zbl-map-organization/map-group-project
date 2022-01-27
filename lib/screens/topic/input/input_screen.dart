@@ -5,7 +5,7 @@ import 'input_app_bar.dart';
 import 'input_body.dart';
 import 'input_drawer.dart';
 
-class InputScreen extends StatefulWidget {
+class InputScreen extends StatelessWidget {
   final String text;
   bool editbool = true;
   final int index;
@@ -19,17 +19,12 @@ class InputScreen extends StatefulWidget {
   static Route route({index, text}) =>
       MaterialPageRoute(builder: (context) => InputScreen(index, text));
   @override
-  InputScreenState createState() => InputScreenState();
-}
-
-class InputScreenState extends State<InputScreen> {
-  @override
   Widget build(BuildContext context) {
     return View<TopicViewmodel>(builder: (_, vm, ___) {
       return Scaffold(
-        appBar: InputAppBar(widget.text),
+        appBar: InputAppBar(text),
         drawer: InputDrawer(),
-        body: InputBody(widget.index, widget.editbool),
+        body: InputBody(index, editbool),
       );
     });
   }

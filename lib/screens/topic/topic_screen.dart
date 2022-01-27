@@ -6,22 +6,16 @@ import 'topic_app_bar.dart';
 import 'topic_body.dart';
 import 'topic_float.dart';
 
-class TopicScreen extends StatefulWidget {
+class TopicScreen extends StatelessWidget {
   static Route route() =>
       MaterialPageRoute(builder: (context) => TopicScreen());
 
   @override
-  TopicScreenState createState() => TopicScreenState();
-}
-
-class TopicScreenState extends State<TopicScreen> {
   Widget build(BuildContext context) {
-    return View<TopicViewmodel>(builder: (_, vm, __) {
-      return Scaffold(
-          appBar: TopicAppBar(),
-          drawer: TopicDrawer(),
-          body: TopicBody(),
-          floatingActionButton: TopicFloat());
-    });
+    return Scaffold(
+        appBar: TopicAppBar(),
+        drawer: TopicDrawer(),
+        body: TopicBody(),
+        floatingActionButton: TopicFloat());
   }
 }

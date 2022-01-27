@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'home_app_bar.dart';
 import 'home_body.dart';
+import 'home_drawer.dart';
 import 'home_float.dart';
 
 class HomeScreenSignedIn extends StatelessWidget {
@@ -9,6 +10,7 @@ class HomeScreenSignedIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar(),
+      drawer: HomeDrawer(),
       body: HomeBody(),
       floatingActionButton: HomeFloat(),
     );

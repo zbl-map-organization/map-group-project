@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import '../../../screens/class/class_screen.dart';
+import '../../../screens/class/class_screen.dart';
 import '../../../screens/topic/topic_screen.dart';
 
 class InputDrawer extends StatelessWidget {
@@ -8,10 +8,10 @@ class InputDrawer extends StatelessWidget {
     if (result != null) {}
   }
 
-  // void _openClassScreen(context) async {
-  //   final result = await Navigator.push(context, ClassScreen.route());
-  //   if (result != null) {}
-  // }
+  void _openClassScreen(context) async {
+    final result = await Navigator.push(context, ClassScreen.route());
+    if (result != null) {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,10 @@ class InputDrawer extends StatelessWidget {
             title: Text('Topics'),
             onTap: () => _openTopicScreen(context),
           ),
-          // ListTile(
-          //   title: Text('Classes'),
-          //   onTap: () => _openClassScreen(context),
-          // ),
+          ListTile(
+            title: Text('Classes'),
+            onTap: () => _openClassScreen(context),
+          ),
           ListTile(
             title: Text('My Schedule'),
             onTap: () {},

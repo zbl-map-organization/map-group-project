@@ -43,6 +43,7 @@ class TopicServiceFirestore extends TopicService {
 
   @override
   Future<Topic> updateTopic({id, Topic data}) async {
+    print('Firebase Update Topic $id');
     final update = data.copyWith(id: id);
     await _getTopicDocument(id).update(update.toJson());
     return update;

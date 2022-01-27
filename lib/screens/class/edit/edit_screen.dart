@@ -3,8 +3,6 @@ import '../../view.dart';
 import '../class_viewmodel.dart';
 import 'edit_app_bar.dart';
 import 'edit_body.dart';
-import '../class_screen.dart';
-import '../../topic/topic_screen.dart';
 import 'edit_drawer.dart';
 
 class EditScreen extends StatelessWidget {

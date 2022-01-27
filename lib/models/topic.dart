@@ -8,7 +8,7 @@ class Topic {
   String _formLvl;
   String _babNum;
 
-  get id => id;
+  get id => _id;
   set id(value) => _id = id;
   get title => _title;
   set title(value) => _title = value;

@@ -22,10 +22,10 @@ import '../services/topic/topic_service.dart';
 //import '../services/topic/topic_service_mock.dart';
 import '../services/topic/topic_service_firestore.dart';
 
-// import '../screens/class/class_viewmodel.dart';
-// import '../services/class/class_service.dart';
+import '../screens/class/class_viewmodel.dart';
+import '../services/class/class_service.dart';
 //import '../services/class/class_service_mock.dart';
-// import '../services/class/class_service_firestore.dart';
+import '../services/class/class_service_firestore.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -45,7 +45,7 @@ void initializeServiceLocator() {
   // locator.registerLazySingleton<NumberService>(() => NumberServiceRest());
   locator.registerLazySingleton<AuthenticationService>(
       () => AuthenticationServiceFirebase());
-  // locator.registerLazySingleton<ClassService>(() => ClassServiceFirestore());
+  locator.registerLazySingleton<ClassService>(() => ClassServiceFirestore());
   locator.registerLazySingleton<TopicService>(() => TopicServiceFirestore());
   // Repositories
   locator.registerLazySingleton<UserRepository>(() => UserRepository());
@@ -54,5 +54,5 @@ void initializeServiceLocator() {
   locator.registerLazySingleton<HomeViewmodel>(() => HomeViewmodel());
   locator.registerLazySingleton<LoginViewmodel>(() => LoginViewmodel());
   locator.registerLazySingleton<TopicViewmodel>(() => TopicViewmodel());
-  // locator.registerLazySingleton<ClassViewmodel>(() => ClassViewmodel());
+  locator.registerLazySingleton<ClassViewmodel>(() => ClassViewmodel());
 }

@@ -1,5 +1,5 @@
-// import 'package:setup_mvvm/screens/class/class_screen.dart';
-// import 'package:setup_mvvm/screens/class/edit/edit_screen.dart';
+import 'package:setup_mvvm/screens/class/class_screen.dart';
+import 'package:setup_mvvm/screens/class/edit/edit_screen.dart';
 
 import '../screens/home/home_screen.dart';
 
@@ -18,11 +18,11 @@ Route<dynamic> createRoute(settings) {
     case '/inputScreen':
       return InputScreen.route(
           index: settings.arguments['index'], text: settings.arguments['text']);
-    // case '/class':
-    //   return ClassScreen.route();
-    // case '/editScreen':
-    //   return EditScreen.route(
-    //       index: settings.arguments['index'], text: settings.arguments['text']);
+    case '/class':
+      return ClassScreen.route();
+    case '/editScreen':
+      return EditScreen.route(
+          index: settings.arguments['index'], text: settings.arguments['text']);
   }
   return null;
 }

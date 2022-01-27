@@ -9,7 +9,6 @@ class TopicTile extends StatelessWidget {
   final int index;
   const TopicTile(this.index);
   void _openInputScreen(context, index, text) async {
-    print('Here is the $index!!!!!');
     final result = await Navigator.push(
         context, InputScreen.route(index: index, text: text));
     if (result != null) {}
@@ -25,7 +24,7 @@ class TopicTile extends StatelessWidget {
           selectedTileColor: Colors.blue[100],
           title: Text('Form ${topic.formLvl} Chapter ${topic.babNum}'),
           subtitle: Text('${topic.title}'),
-          onTap: () => _openInputScreen(context, index, 'View'),
+          onTap: () => {_openInputScreen(context, index, 'View')},
         );
       },
     );

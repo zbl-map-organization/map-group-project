@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../screens/class/class_screen.dart';
 import '../../screens/topic/topic_screen.dart';
 
-class TopicDrawer extends StatelessWidget {
+class HomeDrawer extends StatelessWidget {
   void _openTopicScreen(context) async {
     final result = await Navigator.push(context, TopicScreen.route());
     if (result != null) {}
