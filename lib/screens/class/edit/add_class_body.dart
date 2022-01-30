@@ -142,7 +142,7 @@ class AddClassBody extends StatelessWidget {
                       _openClassScreen(context);
                     }),
                 ElevatedButton(
-                    child: Text("Add Topic".toUpperCase(),
+                    child: Text("Add Class".toUpperCase(),
                         style: TextStyle(fontSize: 12)),
                     style: ButtonStyle(
                         foregroundColor:
