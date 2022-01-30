@@ -1,3 +1,5 @@
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../models/topic.dart';
 import '../topic_screen.dart';
 import '../topic_viewmodel.dart';
@@ -32,7 +34,37 @@ class InputBody extends StatelessWidget {
         return Column(children: [
           Image.asset('assets/topicinput.jpg'),
           SizedBox(
-            height: 30,
+            height: 5,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Visibility(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton.icon(
+                      icon: Icon(Icons.download_rounded),
+                      label: Text("Note PDF"),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(8)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.indigo[400]),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(110.0),
+                          ))),
+                      onPressed: () => {launch(topic.link)}),
+                ],
+              ),
+              visible: !editbool,
+            ),
+          ),
+          SizedBox(
+            height: 5,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -91,34 +123,37 @@ class InputBody extends StatelessWidget {
                           babNum: topic.babNum));
                 }),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: TextFormField(
-                maxLines: 2,
-                initialValue: vm.getTopic(index).link,
-                enabled: editbool,
-                style: TextStyle(fontSize: 18),
-                decoration: InputDecoration(
-                  labelText: 'Note Link',
-                  labelStyle: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 20,
-                      fontFamily: 'AvenirLight'),
-                  hintText: 'Type the note link here',
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (value) {
-                  topic.link = value;
-                  vm.updateTopic(
-                      id: vm.getTopic(index).id,
-                      data: Topic(
-                          title: topic.title,
-                          desc: topic.desc,
-                          link: value,
-                          formLvl: topic.formLvl,
-                          babNum: topic.babNum));
-                }),
+          Visibility(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: TextFormField(
+                  maxLines: 2,
+                  initialValue: vm.getTopic(index).link,
+                  enabled: editbool,
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                    labelText: 'Note Link',
+                    labelStyle: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontFamily: 'AvenirLight'),
+                    hintText: 'Type the note link here',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) {
+                    topic.link = value;
+                    vm.updateTopic(
+                        id: vm.getTopic(index).id,
+                        data: Topic(
+                            title: topic.title,
+                            desc: topic.desc,
+                            link: value,
+                            formLvl: topic.formLvl,
+                            babNum: topic.babNum));
+                  }),
+            ),
+            visible: editbool,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -178,6 +213,9 @@ class InputBody extends StatelessWidget {
                           babNum: value));
                 }),
           ),
+          Container(
+            height: 10,
+          ),
           Visibility(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -188,31 +226,34 @@ class InputBody extends StatelessWidget {
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             EdgeInsets.all(10)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red[600]),
                         foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.red),
+                            MaterialStateProperty.all<Color>(Colors.white),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(110.0),
-                                    side: BorderSide(color: Colors.red)))),
+                                    side: BorderSide(color: Colors.red[600])))),
                     onPressed: () {
                       vm.deleteTopic(vm.getTopic(index).id);
                       _openTopicScreen(context);
                     }),
-                    SizedBox(width:50.0),
+                SizedBox(width: 50.0),
                 TextButton(
                     child: Text("Edit".toUpperCase(),
                         style: TextStyle(fontSize: 12)),
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             EdgeInsets.all(10)),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.indigo[400]),
                         foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.indigo),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(110.0),
-                                    side: BorderSide(color: Colors.indigo)))),
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        shape: MaterialStateProperty
+                            .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(110.0),
+                                side: BorderSide(color: Colors.indigo[400])))),
                     onPressed: () => _openInputScreen(context, index, 'Edit'))
               ],
             ),
@@ -230,10 +271,10 @@ class InputBody extends StatelessWidget {
                     child: Text("Save".toUpperCase(),
                         style: TextStyle(fontSize: 12)),
                     style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red[600]),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.red),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(

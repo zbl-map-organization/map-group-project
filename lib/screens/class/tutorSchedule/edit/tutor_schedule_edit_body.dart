@@ -1,3 +1,5 @@
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../models/class.dart';
 import '../tutor_schedule_screen.dart';
 import '../../class_viewmodel.dart';
@@ -33,7 +35,31 @@ class EditBody extends StatelessWidget {
           children: [
             Image.asset('assets/topicinput.jpg'),
             SizedBox(
-              height: 30,
+              height: 5,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton.icon(
+                      icon: Icon(Icons.computer),
+                      label: Text("Join"),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(8)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.indigo[400]),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(110.0),
+                          ))),
+                      onPressed: () => {launch(_class.classLink)}),
+                ],
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),

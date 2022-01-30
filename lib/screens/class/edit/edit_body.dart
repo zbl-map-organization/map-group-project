@@ -122,37 +122,40 @@ class EditBody extends StatelessWidget {
                         ));
                   }),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              child: TextFormField(
-                  maxLines: 2,
-                  initialValue: vm.getClass(index).classLink,
-                  enabled: editbool,
-                  style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(
-                    labelText: 'Class Link',
-                    labelStyle: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 20,
-                        fontFamily: 'AvenirLight'),
-                    hintText: 'Type the class link here',
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (value) {
-                    _class.classLink = value;
-                    vm.updateClass(
-                        id: vm.getClass(index).id,
-                        data: Class(
-                          classTitle: _class.classTitle,
-                          classDate: _class.classDate,
-                          classTime: _class.classTime,
-                          classLink: value,
-                          tutorID: _class.tutorID,
-                          studentID: _class.studentID,
-                          status: _class.status,
-                        ));
-                  }),
+            Visibility(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                child: TextFormField(
+                    maxLines: 2,
+                    initialValue: vm.getClass(index).classLink,
+                    enabled: editbool,
+                    style: TextStyle(fontSize: 18),
+                    decoration: InputDecoration(
+                      labelText: 'Class Link',
+                      labelStyle: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 20,
+                          fontFamily: 'AvenirLight'),
+                      hintText: 'Type the class link here',
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (value) {
+                      _class.classLink = value;
+                      vm.updateClass(
+                          id: vm.getClass(index).id,
+                          data: Class(
+                            classTitle: _class.classTitle,
+                            classDate: _class.classDate,
+                            classTime: _class.classTime,
+                            classLink: value,
+                            tutorID: _class.tutorID,
+                            studentID: _class.studentID,
+                            status: _class.status,
+                          ));
+                    }),
+              ),
+              visible: editbool,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
