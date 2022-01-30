@@ -61,6 +61,9 @@ class EditBody extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(
+              height: 5,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: TextFormField(

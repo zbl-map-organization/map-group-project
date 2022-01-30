@@ -14,6 +14,8 @@ class TutorScheduleBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           itemCount: vm.dataCount,
           separatorBuilder: (context, index) => Divider(
+            height: 0,
+            thickness: 0,
             color: Colors.white,
           ),
           itemBuilder: (context, index) => TutorScheduleTile(index),

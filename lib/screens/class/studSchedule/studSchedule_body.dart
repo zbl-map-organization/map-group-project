@@ -12,9 +12,11 @@ class StudScheduleBody extends StatelessWidget {
       selector: (_, vm) => vm.dataCount,
       builder: (_, vm, __, ___) {
         return ListView.separated(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           itemCount: vm.dataCount,
           separatorBuilder: (context, index) => Divider(
+            height: 0,
+            thickness: 0,
             color: Colors.white,
           ),
           itemBuilder: (context, index) => StudScheduleTile(index),

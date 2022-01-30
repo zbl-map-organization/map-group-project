@@ -20,7 +20,7 @@ class StudScheduleTile extends StatelessWidget {
       builder: (_, vm, _class, ___) {
         return Visibility(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             child: Container(
               height: 80,
               color: Colors.grey[200],
