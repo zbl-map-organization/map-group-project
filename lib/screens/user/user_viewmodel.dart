@@ -8,8 +8,9 @@ import '../../services/user/user_repository.dart';
 
 class UserViewmodel extends Viewmodel {
   List<User> _list;
+  StreamSubscription _streamObserver;
+  bool get isObservingStream => _streamObserver != null;
 
- 
   UserService get dataService => locator<UserService>();
   final UserRepository _userRepository = locator();
   User get user {
@@ -59,8 +60,19 @@ class UserViewmodel extends Viewmodel {
 
   Future<String> authAddUser(
       {@required String email, @required String password}) async {
-  String uid =
+    String uid =
         await _userRepository.addUser(email: email, password: password);
     return uid;
+  }
+
+  Future<void> signIn(
+      {@required String username, @required String password}) async {
+    await _userRepository.signIn(email: username, password: password);
+  }
+
+  Future<void> signOut() async {
+    _streamObserver?.cancel();
+    _streamObserver = null;
+    await _userRepository.signOut();
   }
 }

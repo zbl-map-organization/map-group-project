@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class AddClassBody extends StatelessWidget {
- 
   void _openClassScreen(context) async {
     final result = await Navigator.push(context, ClassScreen.route());
     if (result != null) {}

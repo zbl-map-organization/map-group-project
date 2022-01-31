@@ -22,21 +22,6 @@ class RegisterScreen extends StatelessWidget {
       return Scaffold(
           appBar: AppBar(
             title: Text('Register'),
-            actions: [
-              CircleAvatar(
-                backgroundColor: Colors.blue.shade200,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.blue,
-                  ),
-                  onPressed: () => {},
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-            ],
           ),
           body: SingleChildScrollView(
             child: Center(
@@ -184,6 +169,8 @@ class RegisterScreen extends StatelessWidget {
                                   onPressed: () async {
                                     String uid = await vm.authAddUser(
                                         email: username, password: password);
+                                    await vm.signIn(
+                                        username: username, password: password);
                                     await vm.addUser(User(
                                         uid: uid,
                                         username: username,
@@ -192,7 +179,7 @@ class RegisterScreen extends StatelessWidget {
                                         phone: phone,
                                         email: username,
                                         password: password));
-
+                                    await vm.signOut();
                                     Navigator.pop(context);
                                   }),
                             ],
