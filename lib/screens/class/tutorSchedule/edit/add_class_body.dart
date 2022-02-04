@@ -150,7 +150,7 @@ class _AddClassBodyState extends State<AddClassBody> {
                       _openTutorScheduleScreen(context);
                     }),
                 ElevatedButton(
-                    child: Text("Add Topic".toUpperCase(),
+                    child: Text("Add Class".toUpperCase(),
                         style: TextStyle(fontSize: 12)),
                     style: ButtonStyle(
                         foregroundColor:
