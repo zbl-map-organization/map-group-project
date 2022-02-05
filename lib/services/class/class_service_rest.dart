@@ -1,8 +1,6 @@
 // Turn of null-safety by writing the following line
 // @dart=2.9
 
-//TODO Complete the implementation of each method of this service class.
-
 import '../../app/service_locator.dart';
 import '../rest.dart';
 import 'class_service.dart';

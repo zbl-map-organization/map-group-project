@@ -11,12 +11,11 @@ void main() async {
 
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Flutter List App Demo',
+    title: 'MAP Project',
     theme: ThemeData(
       primarySwatch: Colors.indigo,
       primaryColor: Color.fromARGB(255, 5, 28, 48),
     ),
-    // home: LoginScreen(),
     home: HomeScreen(),
   ));
 }

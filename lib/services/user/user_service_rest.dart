@@ -1,11 +1,7 @@
 // Turn of null-safety by writing the following line
 // @dart=2.9
 
-//TODO Complete the implementation of each method of this service class.
-
 import 'package:setup_mvvm/models/user.dart';
-import 'package:setup_mvvm/services/user/user_repository.dart';
-
 import '../../app/service_locator.dart';
 import '../rest.dart';
 import 'user_service.dart';

@@ -1,15 +1,11 @@
 // Turn of null-safety by writing the following line
 // @dart=2.9
 
-//TODO Complete the implementation of each method of this service class.
-
 import '../../app/service_locator.dart';
 import '../rest.dart';
 import 'topic_service.dart';
 import '../../models/topic.dart';
 
-/// `NoteServiceRest` is a datbase service for notes that are accessed from a REST service.
-///
 class TopicServiceRest extends TopicService {
   RestService get rest => locator();
 
