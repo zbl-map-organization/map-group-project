@@ -46,7 +46,6 @@ class ClassViewmodel extends Viewmodel {
         _list.removeWhere((_class) => _class.id == id);
       });
   void updateClass({dynamic id, Class data}) => update(() async {
-        print('Update Class $id');
         final item = await _service.updateClass(id: id, data: data);
         final index = _list.indexWhere((_class) => _class.id == id);
         if (index == -1) return;

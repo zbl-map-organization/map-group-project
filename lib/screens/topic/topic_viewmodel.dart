@@ -44,7 +44,7 @@ class TopicViewmodel extends Viewmodel {
         _list.removeWhere((topic) => topic.id == id);
       });
   void updateTopic({dynamic id, Topic data}) => update(() async {
-        print('Update Topic $id');
+        
         final item = await _service.updateTopic(id: id, data: data);
         final index = _list.indexWhere((topic) => topic.id == id);
         if (index == -1) return;

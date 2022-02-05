@@ -14,7 +14,6 @@ class UserViewmodel extends Viewmodel {
   UserService get dataService => locator<UserService>();
   final UserRepository _userRepository = locator();
   User get user {
-    print(_userRepository.user.phone);
     return _userRepository.user;
   }
 
@@ -38,7 +37,6 @@ class UserViewmodel extends Viewmodel {
     turnBusy();
     await dataService.addUser(user);
     _list.add(user);
-    print('${user.email}${user.name}${user.phone}');
     turnIdle();
   }
 
